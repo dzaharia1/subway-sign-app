@@ -11,6 +11,7 @@ const Options = ({ signOptions }) => {
     function submit(e) {
         setSubmitButtonLabel('Saving...');
         const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/kshf?minArrivalTime=${newOptions.minimum_time}&warnTime=${newOptions.warn_time}&signDirection=${newOptions.direction || ''}&signRotation=${newOptions.rotating}&numArrivals=${newOptions.max_arrivals_to_show}&cycleTime=${newOptions.rotation_time}&autoOff=${newOptions.shutoff_schedule}&autoOffStart=${newOptions.turnoff_time}&autoOffEnd=${newOptions.turnon_time}`;
+        console.log(url);
         fetch(url, {method: 'POST'})
         .then(res => res.json())
         .then((payload) => {
@@ -105,25 +106,27 @@ const Options = ({ signOptions }) => {
 
                 </CheckboxExpander>
                 <CheckboxExpander
-                    id="auto_off"
+                    id="shutoff_schedule"
                     label="Turn the display off automatically"
                     description="Turn the display off between the specified times..."
                     checked={signOptions.shutoff_schedule}
                     inputHandler={checkboxHandler}>
                     <TextInput 
                         className={styles.input}
-                        id="on_time"
+                        id="turnon_time"
                         label="Turn off at..."
                         type="time"
                         value={signOptions.turnon_time}
-                        unit="Arrivals"/>
+                        unit=""
+                        inputHandler={inputHandler}/>
                     <TextInput 
                         className={styles.input}
-                        id="off_time"
+                        id="turnoff_time"
                         label="Turn on at..."
                         type="time"
                         value={signOptions.turnoff_time}
-                        unit="seconds"/>
+                        unit=""
+                        inputHandler={inputHandler}/>
 
                 </CheckboxExpander>
             </form>
