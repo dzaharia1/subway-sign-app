@@ -24,7 +24,7 @@
 }
 
 .tab-button {
-    $button-padding: 1.25rem;
+    $button-padding: 1rem;
     @extend %horizontal-center;
     @extend %helvetica;
     justify-content: center;
@@ -38,6 +38,10 @@
         height: 2rem;
         width: 2rem;
         margin-right: .75rem;
+    }
+
+    p {
+        margin-left: .75rem;
     }
 
     &--active {

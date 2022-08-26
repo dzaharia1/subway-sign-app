@@ -1,5 +1,6 @@
 import styles from './Tabs.module.scss';
 import {useState} from 'react';
+import Image from 'next/image'
 
 const Tab = ({ children }) => {
     let [activeTab, setActiveTab] = useState(0);
@@ -19,11 +20,11 @@ const Tab = ({ children }) => {
         </div>
         <nav className={styles["tab-button__frame"]}>
             <button className={`${styles["tab-button"]} ${(activeTab == 0) ? styles['tab-button--active'] : ''}`} onClick={ tabButtonHandler } target={0}>
-                <img src="/stations.svg" alt=""/>
+                <Image width="44px" height="32px" src="/stations.svg" alt="" style={{marginRight: '16px'}} />
                 Stations
             </button>
             <button className={`${styles["tab-button"]} ${(activeTab == 1) ? styles['tab-button--active'] : ''}`} onClick={ tabButtonHandler } target={1}>
-                <img src="/check.svg" alt=""/>
+                <Image width="44px" height="32px" src="/check.svg" alt="" style={{marginRight: '16px'}} />
                 Options
             </button>
         </nav>
