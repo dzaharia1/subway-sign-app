@@ -3,7 +3,7 @@ import styles from './StationList.module.scss'
 const StationList = ({ stations, className }) => {
     return <ul className={ `${styles['station-list']} ${className}` }>
         { stations.map((station, i) => (
-            <li key={i} className={ styles['item'] } key={ i }>
+            <li key={i} className={ styles['item'] } >
                 <button className={ styles['station-button'] } stop-id={ station.stopId }>
                     <h3>{ station.name }</h3>
                     <ul>
