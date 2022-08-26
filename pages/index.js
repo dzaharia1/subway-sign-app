@@ -38,6 +38,6 @@ export async function getStaticProps() {
     station.tracked = signOptions.stations.indexOf(station.stopId) > -1;
     return station;
   }));
-  
+
   return { props: { allStations, signOptions, sampleArrivals }}
 }

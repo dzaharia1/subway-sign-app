@@ -4,13 +4,12 @@ import CheckboxExpander from '../inputs/CheckboxExpander';
 import Button from '../Button';
 import { useEffect, useState } from 'react';
 
-const Options = ({ signOptions }) => {
+const Options = ({ signOptions, setSignOptions, signId }) => {
     let [submitButtonLabel, setSubmitButtonLabel] = useState('Save');
-    let [newOptions, setNewOptions] = useState(signOptions);
 
     function submit(e) {
         setSubmitButtonLabel('Saving...');
-        const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/kshf?minArrivalTime=${newOptions.minimum_time}&warnTime=${newOptions.warn_time}&signDirection=${newOptions.direction || ''}&signRotation=${newOptions.rotating}&numArrivals=${newOptions.max_arrivals_to_show}&cycleTime=${newOptions.rotation_time}&autoOff=${newOptions.shutoff_schedule}&autoOffStart=${formatTime(newOptions.turnoff_time)}&autoOffEnd=${formatTime(newOptions.turnon_time)}`;
+        const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/${signId}?minArrivalTime=${signOptions.minimum_time}&warnTime=${signOptions.warn_time}&signDirection=${signOptions.direction || ''}&signRotation=${signOptions.rotating}&numArrivals=${signOptions.max_arrivals_to_show}&cycleTime=${signOptions.rotation_time}&autoOff=${signOptions.shutoff_schedule}&autoOffStart=${formatTime(signOptions.turnoff_time)}&autoOffEnd=${formatTime(signOptions.turnon_time)}`;
         console.log(url);
         fetch(url, {method: 'POST'})
         .then(res => res.json())
@@ -30,25 +29,22 @@ const Options = ({ signOptions }) => {
     function inputHandler(e) {
         const value = e.target.value;
         const property = e.target.id;
-        let changeObject = newOptions;
+        let changeObject = signOptions;
         changeObject[property] = value;
-        console.log(`${property}: ${value}`)
-        setNewOptions(changeObject);
-        signOptions = newOptions;
+        setSignOptions(changeObject);
     }
     
     function checkboxHandler(e) {
         const value = e.target.checked;
         const property = e.target.id;
-        let changeObject = newOptions;
+        let changeObject = signOptions;
 
         if (property === 'direction' && value === false) {
             value = '';
         }
 
         changeObject[property] = value;
-        console.log(`${property}: ${value}`)
-        setNewOptions(changeObject);
+        setSignOptions(changeObject);
     }
 
     return (

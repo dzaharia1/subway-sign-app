@@ -11,18 +11,40 @@ import SignOptions from '../../components/SignOptions'
 export default function Home({ allStations, signOptions, sampleArrivals, signId }) {
   let [editStationsMode, setEditStationsMode] = useState(false);
   let [stations, setStations] = useState(allStations);
+  let [arrivals, setArrivals] = useState(sampleArrivals);
+  let [localOptions, setLocalOptions] = useState(signOptions);
+
+  useEffect(() => {
+      fetch(`https://subway-arrivals-staging.herokuapp.com/sign/${signId}`)
+      .then(res => res.json())
+      .then((data) => {
+          console.log('updating');
+          setArrivals([data[1], data[2]]);
+      });
+  }, [localOptions]);
 
   return (
-    <main className={styles.main}>
-      <Header signId={signId} signOnState={signOptions.sign_on} editMode={ editStationsMode }/>
-      <SignMockup sampleData={sampleArrivals} signOptions={signOptions} editMode={ editStationsMode } />
+    <main className={ styles.main }>
+      <Header
+        signId={ signId }
+        signOnState={ signOptions.sign_on }
+        editMode={ editStationsMode }/>
+      <SignMockup
+        arrivals={ arrivals }
+        signOptions={ localOptions }
+        editMode={ editStationsMode }
+        signId={ signId } />
       <Tab editMode={ editStationsMode }>
         <SignStations 
           stations={ stations }
-          setStations={setStations}
-          editMode={editStationsMode}
-          setEditMode={setEditStationsMode}/>
-        <SignOptions signOptions={ signOptions } />
+          setStations={ setStations }
+          editMode={ editStationsMode }
+          setEditMode={ setEditStationsMode }
+          signId={ signId }/>
+        <SignOptions
+          signOptions={ localOptions }
+          setSignOptions={ setLocalOptions }
+          signId={ signId }/>
       </Tab>
 
     </main>

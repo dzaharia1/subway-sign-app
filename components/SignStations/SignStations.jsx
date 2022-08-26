@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import IconButton from '../IconButton'
 import { render } from 'react-dom';
 
-const SignStations = ({ stations, setStations, editMode, setEditMode }) => {
+const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchSubmitIcon, setSearchSubmitIcon] = useState('/search.svg');
 
@@ -40,7 +40,7 @@ const SignStations = ({ stations, setStations, editMode, setEditMode }) => {
     function submit(e) {
         let searchBox = e.target.parentNode.querySelector('input');
         if (editMode) {
-            let url = 'https://subway-arrivals-staging.herokuapp.com/setstops/kshf?stops='
+            let url = `https://subway-arrivals-staging.herokuapp.com/setstops/${signId}?stops=`
             let stationsToSet = stations.filter(station => station.tracked);
             for (let station of stationsToSet) {
                 url += `${station.stopId},`

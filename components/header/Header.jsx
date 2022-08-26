@@ -7,7 +7,7 @@ const Header = ({ signId, editMode }) => {
         {/* <IconButton icon='img/backbutton.svg' href="/"></IconButton> */}
         <IconLink href={ '/' } icon={ `/backbutton.svg` }/>
         <h1>Sign { signId }</h1>
-        <PowerButton />
+        <PowerButton signId={signId} />
     </header>
 }
 

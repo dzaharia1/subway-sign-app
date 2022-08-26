@@ -2,27 +2,11 @@ import styles from './Power-Button.module.scss'
 import IconButton from '../IconButton'
 import React, {useState, useEffect} from 'react'
 
-const PowerButton = () => {
+const PowerButton = ({ signId }) => {
     const [onState, setOnState] = useState(true);
 
-    useEffect(() => {
-        updateSignPower()
-    }, [])
-
-    function updateSignPower() {
-        const powerUrl = 'https://subway-arrivals-staging.herokuapp.com/signpower/kshf';
-
-        fetch(powerUrl, {
-            method: 'GET'
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            setOnState(data);
-        })
-    }
-
     function handleClick (e) {
-        const url = `https://subway-arrivals-staging.herokuapp.com/signpower/kshf?power=${ !onState }`;
+        const url = `https://subway-arrivals-staging.herokuapp.com/signpower/${signId}?power=${ !onState }`;
         fetch(url, {
             method: 'POST',
             mode: 'no-cors'
