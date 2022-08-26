@@ -12,6 +12,12 @@
                 margin $transition,
                 padding $transition;
     
+    &--edit-mode {
+        max-height: 0;
+        margin: 0;
+        padding: 0;
+    }
+    
     .arrival {
         @extend %horizontal-center;
         width: 100%;

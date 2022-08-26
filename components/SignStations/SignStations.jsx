@@ -1,12 +1,11 @@
 import styles from './SignStations.module.scss';
 import StationList from '../StationList'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconButton from '../IconButton'
 
-const SignStations = ({ trackedStations, allStations, setTrackedStations }) => {
+const SignStations = ({ trackedStations, allStations, editMode, setEditMode, setTrackedStations }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchSubmitIcon, setSearchSubmitIcon] = useState('/search.svg');
-    const [editMode, setEditMode] = useState(false);
 
     function searchFocus(e) {
         let searchBox = e.target;

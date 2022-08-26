@@ -6,6 +6,12 @@
     width: 100%;
     padding: 1rem $padding-mobile;
     font-size: 1.5rem;
+    transition: margin $transition,
+                opacity $transition;
+
+    &--edit-mode {
+        margin-top: -50px;
+    }
 
     a {
         margin-right: 1rem;
