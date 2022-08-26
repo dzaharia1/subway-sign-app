@@ -26,6 +26,13 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
 
   return (
     <main className={ styles.main }>
+      <Head>
+        <title>Subway Sign {signId}</title>
+        <meta name="mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+        <meta name="theme-color" content="#232338"/>
+      </Head>
       <Header
         signId={ signId }
         signOnState={ signOptions.sign_on }

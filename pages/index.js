@@ -58,6 +58,13 @@ export default function Home({ signIds }) {
 
   return (
     <main className={`${styles.main} ${styles['sign-selector']}`}>
+      <Head>
+        <title>Enter your sign code - Subway Sign</title>
+        <meta name="mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+        <meta name="theme-color" content="#232338"/>
+      </Head>
       <h1>Access your sign</h1>
       <h2>Welcome to subway sign</h2>
       <TextInput
