@@ -1,0 +1,50 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.sign-mockup {
+    @extend %vertical-start;
+    width: 100%;
+    padding: .75rem $padding-mobile;
+    background-color: $background-blue;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    max-height: 100px;
+    transition: max-height $transition,
+                margin $transition,
+                padding $transition;
+    
+    .arrival {
+        @extend %horizontal-center;
+        width: 100%;
+        color: $primary-white;
+
+        &:first-child {
+            margin-bottom: .5rem;
+        }
+
+        .index {
+            margin-right: .5rem;
+        }
+
+        .route {
+            @extend %horizontal-center;
+            justify-content: center;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: .5rem;
+        }
+
+        .headsign {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 2rem;
+        }
+
+        .warning {
+            color: $orange-bdfm;
+        }
+    }
+}

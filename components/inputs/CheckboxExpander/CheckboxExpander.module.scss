@@ -1,0 +1,129 @@
+@import '../../../styles/scaffolding/utilities-manifest';
+
+.checkbox-expander {
+    width: 100%;
+    padding: .75rem 1.25rem;
+    border: 1px $tertiary-blue solid;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    transition: background-color $transition;
+
+    &--active {
+        background-color: $secondary-blue;
+        transition: background-color $transition;
+
+        .checkbox-expander{
+            &__expanded-content {
+                opacity: 1;
+                max-height: 400px;
+                transition: max-height $transition,
+                            opacity $transition;
+            }
+
+            &__label,
+            label {
+                margin-bottom: .75rem;
+                transition: margin-bottom $transition;
+            }
+        }
+    }
+
+    &__expanded-content {
+        max-height: 0px;
+        overflow-y: hidden;
+        opacity: 0;
+        transition: max-height $transition,
+                    opacity $transition;
+    }
+    
+    label {
+        @extend %horizontal-center;
+        width: 100%;
+        margin-bottom: 0;
+        transition: margin-bottom $transition;
+        font-weight: 700;
+    }
+    
+    &__label {
+        justify-content: space-between;
+        margin-bottom: 0rem;
+        transition: margin-bottom $transition;
+        font-weight: 700;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        @extend %horizontal-center;
+        justify-content: center;
+        -webkit-appearance: none;
+        appearance: none;
+        background: none;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 3px $primary-white solid;
+        border-radius: 4px;
+
+        &::before {
+            // @extend .icon-button;
+            content: '';
+            width: .6rem;
+            height: .6rem;
+            opacity: 0;
+            background-color: $primary-white;
+        }
+        
+        &:checked::before {
+            opacity: 1;
+        }
+    }
+
+    input[type="radio"] {
+        border-radius: 50%;
+        margin-right: .75rem;
+
+        &::before {
+            border-radius: 50%;
+        }
+    }
+
+    .input {
+        margin-bottom: 1rem;
+
+        label {
+            margin-bottom: .75rem;
+        }
+
+        &__unit {
+            top: -1.75rem;
+            right: .75rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="time"] {
+            border: none;
+            background-color: $tertiary-blue;
+            padding: .4rem .75rem;
+            border-radius: 4px;
+        }
+    }
+
+    &__description {
+        // font-size: .9rem;
+        margin-bottom: 1rem;
+    }
+
+    fieldset {
+        padding: 0;
+        border: 0;
+        margin: 0;
+
+        .checkbox-expander__label {
+            justify-content: flex-start;
+        }
+
+        label {
+            margin-bottom: .75rem;
+        }
+    }
+}

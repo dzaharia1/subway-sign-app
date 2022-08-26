@@ -1,0 +1,111 @@
+$main-yellow: #FDE628;
+$background-blue: #11111c;
+$secondary-blue: #232338;
+$tertiary-blue: #35354e;
+$primary-white: rgb(235, 235, 235);
+
+$red-123: #EE352E;
+$line-color__1: $red-123;
+$line-color__2: $red-123;
+$line-color__3: $red-123;
+
+$green-456: #00933C;
+$line-color__4: $green-456;
+$line-color__5: $green-456;
+$line-color__6: $green-456;
+
+$magenta-7: #B933AD;
+$line-color__7: $magenta-7;
+
+$green-g: #6cbe45;
+$line-color__G: $green-g;
+
+$blue-ace: #2850AD;
+$line-color__A: $blue-ace;
+$line-color__C: $blue-ace;
+$line-color__E: $blue-ace;
+
+$orange-bdfm: #FF6319;
+$line-color__B: $orange-bdfm;
+$line-color__D: $orange-bdfm;
+$line-color__F: $orange-bdfm;
+$line-color__M: $orange-bdfm;
+
+$brown-jz: #996633;
+$line-color__J: $brown-jz;
+$line-color__Z: $brown-jz;
+
+$gray-l: #a7a9ac;
+$line-color__L: $gray-l;
+
+$yellow-nqrw: #fccc0a;
+$line-color__N: $yellow-nqrw;
+$line-color__Q: $yellow-nqrw;
+$line-color__R: $yellow-nqrw;
+$line-color__W: $yellow-nqrw;
+
+$gray-s: #808183;
+$line-color__S: $gray-s;
+
+.line--1,
+.line--2,
+.line--3 {
+    color: white;
+    background-color: $red-123;
+}
+
+.line--4,
+.line--5,
+.line--6 {
+    color: white;
+    background-color: $green-456;
+}
+
+.line--7 {
+    color: white;
+    background-color: $magenta-7;
+}
+
+.line--A,
+.line--C,
+.line--E {
+    color: white;
+    background-color: $blue-ace;
+}
+
+.line--B,
+.line--D,
+.line--F,
+.line--M {
+    color: white;
+    background-color: $orange-bdfm;
+}
+
+.line--N,
+.line--Q,
+.line--R,
+.line--W {
+    color: black;
+    background-color: $yellow-nqrw;
+}
+
+.line--G {
+    color: white;
+    background-color: $green-g;
+}
+
+.line--J,
+.line--Z {
+    color: white;
+    background-color: $brown-jz;
+}
+
+.line--L {
+    color: white;
+    background-color: $gray-l;
+}
+
+.line--S {
+    color: white;
+    background-color: $gray-s;
+}

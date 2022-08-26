@@ -1,0 +1,52 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.tab {
+    @extend %vertical-start;
+    width: 100vw;
+    overflow: hidden;
+    flex: 1;
+}
+
+.tab-panel {
+    @extend %vertical-start;
+    width: 100vw;
+    height: 100%;
+    padding: 0 calc($padding-mobile / 2);
+    overflow: hidden;
+    
+    &__frame {
+        @extend %horizontal-start;
+        width: 200vw;
+        height: 100%;
+        transition: transform $transition;
+        overflow: hidden;
+    }
+}
+
+.tab-button {
+    $button-padding: 1.25rem;
+    @extend %horizontal-center;
+    @extend %helvetica;
+    justify-content: center;
+    flex: 1;
+    color: $primary-white;
+    padding: $button-padding;
+    font-size: 1rem;
+    font-weight: 700;
+
+    img {
+        height: 2rem;
+        width: 2rem;
+        margin-right: .75rem;
+    }
+
+    &--active {
+        border-bottom: 3px $primary-white solid;
+        padding-bottom: calc($button-padding - 3px);
+    }
+
+    &__frame {
+        @extend %horizontal-start;
+        width: 100%;
+    }
+}

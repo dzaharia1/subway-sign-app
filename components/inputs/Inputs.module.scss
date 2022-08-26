@@ -1,0 +1,79 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.input {
+    @extend %vertical-start;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    input[type="text"],
+    input[type="number"],
+    input[type="time"] {
+        @extend %helvetica;
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border-radius: 4px;
+        border: 1px $tertiary-blue solid;
+        background-color: $secondary-blue;
+        margin: .5rem 0 0 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $primary-white;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__unit {
+        position: relative;
+        margin: 0;
+        height: 0;
+        width: 100%;
+        text-align: right;
+        top: -2.47rem;
+        right: 1.25rem;
+    }
+
+    label,
+    &__error {
+        width: 100%;
+        padding: 0 calc($padding-mobile / 2);
+    }
+
+    .warning {
+        color: $orange-bdfm;
+        font-weight: 700;
+    }
+
+    &__error {
+        margin-top: .25rem;
+    }
+
+    &--error {
+        input[type="text"],
+        input[type="number"],
+        input[type="time"] {
+            border: 3px $orange-bdfm solid;
+            padding: calc(1rem - 2px) calc(1.25rem - 2px);
+        }
+
+        .error {
+            color: $orange-bdfm;
+            font-weight: 700;
+        }
+    }
+    
+    &--valid {
+        input[type="text"],
+        input[type="number"],
+        input[type="time"] {
+            border: 3px $green-456 solid;
+            padding: calc(1rem - 2px) calc(1.25rem - 2px);
+        }
+
+        .error {
+            color: $green-456;
+            font-weight: 700;
+        }
+    }
+}

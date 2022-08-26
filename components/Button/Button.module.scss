@@ -1,0 +1,34 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.button {
+    @extend %horizontal-center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    color: $primary-white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    border: 1px $tertiary-blue solid;
+    border-radius: 4px;
+    transition: background-color $transition;
+    
+    img {
+        width: 28px;
+        height: 28px;
+        margin-right: 1rem;
+    }
+
+    &--working {
+        background-color: $blue-ace !important;
+        border-color: $blue-ace !important;
+    }
+
+    &--valid {
+        background-color: $green-g !important;
+        border-color: $green-g !important;
+    }
+
+    &--error {
+        background-color: $red-123 !important;
+        border-color: $red-123 !important;
+    }
+}

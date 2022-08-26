@@ -1,0 +1,56 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.sign-stations {
+    @extend %vertical-start;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.search-results {
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+
+    .separator {
+        margin-top: 1rem;
+        width: 100%;
+        border-bottom: 1px $tertiary-blue solid;
+    }
+
+    h2 {
+        margin-top: .75rem;
+    }
+}
+
+.search-bar {
+    @extend %horizontal-center;
+    width: 100%;
+    padding: .625rem .75rem;
+    border: 1px $tertiary-blue solid;
+    border-radius: 4px;
+
+    input {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $primary-white;
+        width: calc(100% - 3rem);
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &::placeholder {
+            // color: lighten($tertiary-blue, 30%);
+            color: $primary-white;
+        }
+    }
+
+    button {
+        margin: 0;
+    }
+
+    .button--active {
+        background-color: $blue-ace;
+    }
+}

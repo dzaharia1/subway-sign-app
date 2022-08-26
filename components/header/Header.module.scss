@@ -1,0 +1,18 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.header {
+    @extend %horizontal-center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem $padding-mobile;
+    font-size: 1.5rem;
+
+    a {
+        margin-right: 1rem;
+    }
+
+    h1 {
+        flex: 1;
+        font-size: 1.5rem;
+    }
+}

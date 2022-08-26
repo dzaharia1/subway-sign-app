@@ -1,0 +1,57 @@
+@import 'scaffolding/resets';
+@import 'scaffolding/colors';
+@import 'scaffolding/type';
+@import 'scaffolding/utilities';
+@import 'scaffolding/variables';
+
+
+.hidden {
+	display: none;
+}
+
+body {
+	@extend %vertical-center;
+	@extend %helvetica;
+	background-color: $background-blue;
+	color: $primary-white;
+	background-image: linear-gradient($secondary-blue, $background-blue);
+	overflow-y: hidden;
+  font-size: 16px;
+}
+
+main {
+	@extend %vertical-center;
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+
+	@media screen and (min-width: $breakpoint) {
+		max-width: $site-max-width;
+	}
+}
+// html,
+// body {
+//   padding: 0;
+//   margin: 0;
+//   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+//     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+// }
+
+// a {
+//   color: inherit;
+//   text-decoration: none;
+// }
+
+// * {
+//   box-sizing: border-box;
+// }
+
+// @media (prefers-color-scheme: dark) {
+//   html {
+//     color-scheme: dark;
+//   }
+//   body {
+//     color: white;
+//     background: black;
+//   }
+// }

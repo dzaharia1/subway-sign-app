@@ -1,0 +1,22 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.options {
+    width: 100%;
+    overflow-y: scroll;
+    min-height: min-content;
+
+    &__container {
+        @extend %vertical-start;
+        overflow-y: hidden;
+
+        button {
+            margin: 1rem 0;
+            width: 100%;
+        }
+    }
+
+
+    .input {
+        width: 100%;
+    }
+}
