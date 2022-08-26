@@ -1,11 +1,12 @@
 import styles from '../Inputs.module.scss';
 
-const TextInput = ({ id, label, type, value, unit, placeholder, inputHandler }) => {
+const TextInput = ({ id, label, type, value, unit, placeholder, error, inputHandler }) => {
 
-    return <div className={styles.input}>
+    return <div className={`${styles.input} ${(error && error.error) ? styles['input--error'] : null}`}>
         <label htmlFor={id}>{ label }</label>
-        <input type={ type } id={id} defaultValue={value} onChange={inputHandler} />
+        <input type={ type } id={id} defaultValue={value} placeholder={placeholder} onChange={inputHandler} />
         <p className={styles["input__unit"]}>{ unit }</p>
+        {(error && error.error) ? (<p className={`${styles['input__error']} ${styles.error}`}>{error.errorText}</p>) : null}
     </div>
 }
 
