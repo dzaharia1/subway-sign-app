@@ -32,7 +32,7 @@ const PowerButton = () => {
     }
 
     return <div className={`${styles['power-button']} ${styles[onState]}`} >
-        <IconButton icon="power.svg" clickHandler={ handleClick }/>
+        <IconButton icon="/power.svg" clickHandler={ handleClick }/>
     </div>
 }
 

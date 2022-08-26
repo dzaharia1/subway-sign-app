@@ -10,7 +10,7 @@ const Options = ({ signOptions }) => {
 
     function submit(e) {
         setSubmitButtonLabel('Saving...');
-        const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/kshf?minArrivalTime=${newOptions.minimum_time}&warnTime=${newOptions.warn_time}&signDirection=${newOptions.direction || ''}&signRotation=${newOptions.rotating}&numArrivals=${newOptions.max_arrivals_to_show}&cycleTime=${newOptions.rotation_time}&autoOff=${newOptions.shutoff_schedule}&autoOffStart=${newOptions.turnoff_time}&autoOffEnd=${newOptions.turnon_time}`;
+        const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/kshf?minArrivalTime=${newOptions.minimum_time}&warnTime=${newOptions.warn_time}&signDirection=${newOptions.direction || ''}&signRotation=${newOptions.rotating}&numArrivals=${newOptions.max_arrivals_to_show}&cycleTime=${newOptions.rotation_time}&autoOff=${newOptions.shutoff_schedule}&autoOffStart=${formatTime(newOptions.turnoff_time)}&autoOffEnd=${formatTime(newOptions.turnon_time)}`;
         console.log(url);
         fetch(url, {method: 'POST'})
         .then(res => res.json())
@@ -18,6 +18,13 @@ const Options = ({ signOptions }) => {
             console.log(payload);
             setSubmitButtonLabel('Save');
         })
+    }
+
+    function formatTime(time) {
+        if (time.length != 8) {
+            return time + ":00";
+        }
+        return time;
     }
 
     function inputHandler(e) {

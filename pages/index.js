@@ -9,32 +9,19 @@ import SignStations from '../components/SignStations'
 import SignOptions from '../components/SignOptions'
 
 export default function Home({ allStations, signOptions, sampleArrivals }) {
-  let [trackedStations, setTrackedStations] = useState([]);
   let [editStationsMode, setEditStationsMode] = useState(false);
-
-  useEffect(() => {
-    updateStations();
-    console.log(signOptions);
-  }, []);
-
-  function updateStations() {
-    const trackedStationsUrl = 'https://subway-arrivals-staging.herokuapp.com/signstations/kshf';
-
-    fetch (trackedStationsUrl, {
-      method: 'GET'
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setTrackedStations(data);
-    })
-  }
+  let [stations, setStations] = useState(allStations);
 
   return (
     <main className={styles.main}>
       <Header signId="kshf" signOnState="false" editMode={ editStationsMode }/>
       <SignMockup sampleData={sampleArrivals} signOptions={signOptions} editMode={ editStationsMode } />
       <Tab editMode={ editStationsMode }>
-        <SignStations trackedStations={ trackedStations } allStations={ allStations } setTrackedStations={ setTrackedStations } editMode={ editStationsMode } setEditMode={ setEditStationsMode } />
+        <SignStations 
+          stations={ stations }
+          setStations={setStations}
+          editMode={editStationsMode}
+          setEditMode={setEditStationsMode}/>
         <SignOptions signOptions={ signOptions } />
       </Tab>
 
@@ -43,9 +30,14 @@ export default function Home({ allStations, signOptions, sampleArrivals }) {
 }
 
 export async function getStaticProps() {
-  const allStations = await fetch('https://subway-arrivals-staging.herokuapp.com/stations').then((data) => data.json());
   const sampleArrivals = await fetch('https://subway-arrivals-staging.herokuapp.com/sign/kshf').then((data) => data.json());
   const signOptions = await fetch('https://subway-arrivals-staging.herokuapp.com/signinfo/kshf').then(data => data.json());
-
+  const allStations = await fetch('https://subway-arrivals-staging.herokuapp.com/stations')
+  .then((res) => res.json())
+  .then((data) => data.map(station => {
+    station.tracked = signOptions.stations.indexOf(station.stopId) > -1;
+    return station;
+  }));
+  
   return { props: { allStations, signOptions, sampleArrivals }}
 }
