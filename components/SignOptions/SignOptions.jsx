@@ -26,6 +26,7 @@ const Options = ({ signOptions }) => {
         changeObject[property] = value;
         console.log(`${property}: ${value}`)
         setNewOptions(changeObject);
+        signOptions = newOptions;
     }
     
     function checkboxHandler(e) {

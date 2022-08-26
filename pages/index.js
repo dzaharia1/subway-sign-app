@@ -31,7 +31,7 @@ export default function Home({ allStations, signOptions, sampleArrivals }) {
   return (
     <main className={styles.main}>
       <Header signId="kshf" signOnState="false"/>
-      <SignMockup sampleData={sampleArrivals} />
+      <SignMockup sampleData={sampleArrivals} signOptions={signOptions} />
       <Tab>
         <SignStations trackedStations={ trackedStations } allStations={ allStations } setTrackedStations={ setTrackedStations } />
         <SignOptions signOptions={ signOptions } />
@@ -43,9 +43,8 @@ export default function Home({ allStations, signOptions, sampleArrivals }) {
 
 export async function getStaticProps() {
   const allStations = await fetch('https://subway-arrivals-staging.herokuapp.com/stations').then((data) => data.json());
-  const signOptions = await fetch('https://subway-arrivals-staging.herokuapp.com/signinfo/kshf').then((data) => data.json());
   const sampleArrivals = await fetch('https://subway-arrivals-staging.herokuapp.com/sign/kshf').then((data) => data.json());
-
+  const signOptions = await fetch('https://subway-arrivals-staging.herokuapp.com/signinfo/kshf').then(data => data.json());
 
   return { props: { allStations, signOptions, sampleArrivals }}
 }

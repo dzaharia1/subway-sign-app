@@ -1,9 +1,8 @@
 import styles from './SignMockup.module.scss';
 import React, { useState, useEffect } from 'react';
 
-const SignMockup = ({ sampleData }) => {
+const SignMockup = ({ sampleData, signOptions }) => {
     const [arrivalsData, setArrivalsData] = useState(sampleData);
-    const [signOptions, setSignOptions] = useState(sampleData[0]);
 
     useEffect(() => {
         setArrivalsData([sampleData[1], sampleData[2]]);
@@ -12,15 +11,14 @@ const SignMockup = ({ sampleData }) => {
     function updateSignData() {
         const arrivalsUrl = `https://subway-arrivals-staging.herokuapp.com/sign/kshf`;
 
-        
         fetch(arrivalsUrl, {
             method: 'GET'
         })
         .then((res) => res.json() )
         .then((data) => {
             let newArrivalsData = [data[1], data[2]];
-            setSignOptions(data[0]);
             setArrivalsData(newArrivalsData);
+            // signOptions = data[0];
         });
     }
 
@@ -36,7 +34,7 @@ const SignMockup = ({ sampleData }) => {
                     <p>{arrival.routeId}</p>
                 </div>
                 <h3 className={styles.headsign}>{arrival.headsign}</h3>
-                <p className={ (arrival.minutesUntil < signOptions.warnTime ) ? styles.warning : "" }>{arrival.minutesUntil} min</p>
+                <p className={ (arrival.minutesUntil < signOptions.warn_time ) ? styles.warning : "" }>{arrival.minutesUntil} min</p>
             </li>
         ))}
     </ul>

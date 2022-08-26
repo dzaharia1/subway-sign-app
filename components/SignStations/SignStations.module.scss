@@ -5,12 +5,31 @@
     height: 100%;
     width: 100%;
     padding-bottom: 1rem;
+
+    &--active {
+        .tracked-stations {
+            flex: unset;
+        }
+
+        .search-results {
+            display: block;
+        }
+    }
+}
+
+.tracked-stations {
+    flex: 1;
 }
 
 .search-results {
     width: 100%;
     flex: 1;
     overflow-y: scroll;
+    display: none;
+
+    &--active {
+        display: flex;
+    }
 
     .separator {
         margin-top: 1rem;
