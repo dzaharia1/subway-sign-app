@@ -24,7 +24,7 @@
         color: $primary-white;
 
         &:first-child {
-            margin-bottom: .5rem;
+            margin-bottom: .75rem;
         }
 
         .index {
@@ -39,6 +39,19 @@
             border-radius: 50%;
             font-weight: 700;
             margin-right: .5rem;
+
+            &.express {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 0;
+                transform: rotate(45deg);
+                margin-left: .1rem;
+                margin-right: .65rem;
+
+                p {
+                    transform: rotate(-45deg);
+                }
+            }
         }
 
         .headsign {

@@ -21,6 +21,7 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
           console.log('updating');
           setArrivals([data[1], data[2]]);
       });
+      console.log(arrivals);
   }, [localOptions]);
 
   return (
@@ -53,7 +54,9 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
 
 export async function getStaticProps({params}) {
     const signId = params.sign;
-    const sampleArrivals = await fetch(`https://subway-arrivals-staging.herokuapp.com/sign/${signId}`).then((data) => data.json());
+    const sampleArrivals = await fetch(`https://subway-arrivals-staging.herokuapp.com/sign/${signId}`)
+    .then((res) => res.json())
+    .then((data) => [data[1], data[2]]);
     const signOptions = await fetch(`https://subway-arrivals-staging.herokuapp.com/signinfo/${signId}`).then(data => data.json());
     const allStations = await fetch(`https://subway-arrivals-staging.herokuapp.com/stations`)
     .then((res) => res.json())
