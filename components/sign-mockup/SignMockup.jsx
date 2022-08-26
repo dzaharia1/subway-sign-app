@@ -3,14 +3,15 @@ import React, { useState, useEffect } from 'react';
 
 const SignMockup = ({ sampleData }) => {
     const [arrivalsData, setArrivalsData] = useState(sampleData);
-    const [signOptions, setSignOptions] = useState({});
+    const [signOptions, setSignOptions] = useState(sampleData[0]);
 
     useEffect(() => {
-        updateSignData();
-    }, [])
-
+        setArrivalsData([sampleData[1], sampleData[2]]);
+    }, []);
+    
     function updateSignData() {
         const arrivalsUrl = `https://subway-arrivals-staging.herokuapp.com/sign/kshf`;
+
         
         fetch(arrivalsUrl, {
             method: 'GET'

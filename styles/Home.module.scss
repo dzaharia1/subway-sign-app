@@ -1,14 +1,18 @@
-@import './scaffolding/variables';
-@import './scaffolding/utilities';
-@import './scaffolding/type';
+@import './scaffolding/utilities-manifest';
 
 .main {
 	@extend %vertical-center;
 	@extend %helvetica;
-	width: 100vw;
-	height: 100vh;
+	position: fixed;
+	height: 100%;
+	left: 0;
+	right: 0;
 	overflow-x: hidden;
 	font-size: 16px;
+
+	background-color: $background-blue;
+	color: $primary-white;
+	background-image: linear-gradient($secondary-blue, $background-blue);
 
 	@media screen and (min-width: $breakpoint) {
 		max-width: $site-max-width;
