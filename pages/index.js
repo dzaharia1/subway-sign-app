@@ -85,7 +85,7 @@ export default function Home({ signIds }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const signIds = await fetch('https://subway-arrivals-staging.herokuapp.com/signids')
   .then(res => res.json())
   .then(data => data.map(item => item.sign_id));
