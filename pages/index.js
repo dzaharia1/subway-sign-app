@@ -69,7 +69,7 @@ export default function Home({ signIds }) {
         error={inputError}
         inputHandler={signFieldInputHandler} />
       <Button
-        icon="check.svg"
+        icon="/check.svg"
         label="Find my sign"
         className={styles.button}
         disabled={false}
