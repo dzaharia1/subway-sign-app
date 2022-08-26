@@ -2,7 +2,7 @@ import styles from './Tabs.module.scss';
 import {useState} from 'react';
 import Image from 'next/image'
 
-const Tab = ({ children }) => {
+const Tab = ({ editMode, children }) => {
     let [activeTab, setActiveTab] = useState(0);
 
     function tabButtonHandler(e) {
@@ -18,7 +18,7 @@ const Tab = ({ children }) => {
                 { children[1] }
             </div>
         </div>
-        <nav className={styles["tab-button__frame"]}>
+        <nav className={`${styles["tab-button__frame"]} ${editMode ? styles['tab-button__frame--edit-mode'] : ''}`}>
             <button className={`${styles["tab-button"]} ${(activeTab == 0) ? styles['tab-button--active'] : ''}`} onClick={ tabButtonHandler } target={0}>
                 <Image width="44px" height="32px" src="/stations.svg" alt="" style={{marginRight: '16px'}} />
                 Stations

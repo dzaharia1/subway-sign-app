@@ -1,7 +1,7 @@
 import styles from './SignMockup.module.scss';
 import React, { useState, useEffect } from 'react';
 
-const SignMockup = ({ sampleData, signOptions }) => {
+const SignMockup = ({ sampleData, signOptions, editMode }) => {
     const [arrivalsData, setArrivalsData] = useState(sampleData);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const SignMockup = ({ sampleData, signOptions }) => {
         updateSignData();
     }
 
-    return <ul onClick={ clickHandler } className={ styles['sign-mockup'] }>
+    return <ul onClick={ clickHandler } className={ `${styles['sign-mockup']} ${editMode ? styles['sign-mockup--edit-mode'] : ''}` }>
         {arrivalsData.map((arrival, i) => (
             <li className={styles.arrival} key={i}>
                 <p className={styles.index} style={{display: signOptions.rotating ? "block" : "none"}}>{ i + 1 }</p>

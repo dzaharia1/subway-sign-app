@@ -10,6 +10,7 @@ import SignOptions from '../components/SignOptions'
 
 export default function Home({ allStations, signOptions, sampleArrivals }) {
   let [trackedStations, setTrackedStations] = useState([]);
+  let [editStationsMode, setEditStationsMode] = useState(false);
 
   useEffect(() => {
     updateStations();
@@ -30,10 +31,10 @@ export default function Home({ allStations, signOptions, sampleArrivals }) {
 
   return (
     <main className={styles.main}>
-      <Header signId="kshf" signOnState="false"/>
-      <SignMockup sampleData={sampleArrivals} signOptions={signOptions} />
-      <Tab>
-        <SignStations trackedStations={ trackedStations } allStations={ allStations } setTrackedStations={ setTrackedStations } />
+      <Header signId="kshf" signOnState="false" editMode={ editStationsMode }/>
+      <SignMockup sampleData={sampleArrivals} signOptions={signOptions} editMode={ editStationsMode } />
+      <Tab editMode={ editStationsMode }>
+        <SignStations trackedStations={ trackedStations } allStations={ allStations } setTrackedStations={ setTrackedStations } editMode={ editStationsMode } setEditMode={ setEditStationsMode } />
         <SignOptions signOptions={ signOptions } />
       </Tab>
 

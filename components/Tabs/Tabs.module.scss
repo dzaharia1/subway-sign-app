@@ -52,5 +52,11 @@
     &__frame {
         @extend %horizontal-start;
         width: 100%;
+        max-height: 80px;
+        transition: max-height $transition;
+
+        &--edit-mode {
+            max-height: 0px;
+        }
     }
 }
