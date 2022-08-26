@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import TextInput from '../components/inputs/TextInput'
 import Button from '../components/Button'
@@ -10,6 +9,7 @@ export default function Home({ signIds }) {
   let [inputError, setInputError] = useState({ error: false });
 
   function signFieldInputHandler(e) {
+    e.target.value = e.target.value.toLowerCase();
     let fieldValue = e.target.value;
     setSignCodeInput(fieldValue);
     setInputError(fieldValidator(fieldValue));
