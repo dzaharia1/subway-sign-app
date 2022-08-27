@@ -18,6 +18,12 @@ export default function Home({ signIds }) {
     }
   }
 
+  function signFieldKeyPressHandler(e) {
+    if (e.key === 'Enter' && !inputError.error) {
+      submit();
+    }
+  }
+
   function checkForSign(input) {
     if (signIds.indexOf(input) === -1) {
       return {
@@ -74,7 +80,8 @@ export default function Home({ signIds }) {
         value=""
         placeholder="e.g. abcd"
         error={inputError}
-        inputHandler={signFieldInputHandler} />
+        inputHandler={signFieldInputHandler}
+        keyPressHandler={signFieldKeyPressHandler} />
       <Button
         icon="/check.svg"
         label="Find my sign"
