@@ -97,7 +97,5 @@ export async function getServerSideProps() {
   .then(res => res.json())
   .then(data => data.map(item => item.sign_id));
 
-  console.log(signIds);
-
   return { props: { signIds }}
 }
