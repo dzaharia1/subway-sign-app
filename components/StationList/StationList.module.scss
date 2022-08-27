@@ -32,6 +32,14 @@
 
     ul {
         @extend %horizontal-center;
+        margin: 0;
+        transition: margin $transition;
+    }
+
+    &.edit-mode {
+        ul {
+            margin-right: 2rem;
+        }
     }
 
     .line {

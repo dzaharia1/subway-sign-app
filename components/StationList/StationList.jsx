@@ -1,6 +1,6 @@
 import styles from './StationList.module.scss'
 
-const StationList = ({ stations, className, clickHandler }) => {
+const StationList = ({ stations, className, clickHandler, editMode }) => {
 
     return <ul className={ `${styles['station-list']} ${className}` }>
         { stations.map((station, i) => (
@@ -9,29 +9,37 @@ const StationList = ({ stations, className, clickHandler }) => {
                     stopId={station.stopId}
                     name={station.name}
                     lines={station.lines}
-                    clickHandler={clickHandler} />
+                    clickHandler={clickHandler}
+                    editMode={editMode}
+                    tracked={station.tracked} />
             </li>
         ))}
     </ul>
 }
 
-const StationButton = ({stopId, name, lines, clickHandler}) => {
+const StationButton = ({stopId, name, lines, clickHandler, editMode, tracked}) => {
     function clicked() {
         clickHandler(stopId);
     }
 
-    return <button className={styles['station-button']} onClick={clicked}>
+    return (
+    <button
+        className={`${styles['station-button']} ${editMode ? styles['edit-mode'] : null}`}
+        onClick={clicked}
+        style={editMode ? ((!tracked) ? {backgroundImage: `url('/add.svg')`} : {backgroundImage: `url('/close.svg')`}) : null }>
         <h3>{name}</h3>
         <ul>
             {lines.map((line, i) => (
-                <li key={i} className={`${styles.line} line--${line[0]} ${(line[1] === 'X') ? styles.express : null}`}>
+                <li
+                    key={i} 
+                    className={`${styles.line} line--${line[0]} ${(line[1] === 'X') ? styles.express : null}`}>
                     <p>
                         {(line[1] === 'X') ? line[0] : line}
                     </p>
                 </li>
             ))}
         </ul>
-    </button>
+    </button>)
 }
 
 export default StationList;

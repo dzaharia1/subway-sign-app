@@ -69,11 +69,18 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
     return(
     <div className={ `${styles['sign-stations']} ${editMode ? styles['sign-stations--active']: ''}` }>
         <h2>Tracked stations</h2>
-        <StationList stations={stations.filter(obj => obj.tracked)} className={styles['tracked-stations']} clickHandler={stationToggle} />
+        <StationList
+            stations={stations.filter(obj => obj.tracked)}
+            className={styles['tracked-stations']}
+            clickHandler={stationToggle}
+            editMode={editMode} />
         <div className={styles['search-results']}>
             <div className={styles["separator"]}></div>
             <h2>Search results</h2>
-            <StationList stations={ searchResults } clickHandler={ stationToggle } />
+            <StationList
+                stations={ searchResults }
+                clickHandler={ stationToggle }
+                editMode={editMode} />
         </div>
         <div className={styles["search-bar"]}>
             <input
