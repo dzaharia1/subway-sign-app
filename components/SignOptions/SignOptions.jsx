@@ -2,20 +2,27 @@ import styles from './SignOptions.module.scss';
 import TextInput from '../inputs/TextInput';
 import CheckboxExpander from '../inputs/CheckboxExpander';
 import Button from '../Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Options = ({ signOptions, setSignOptions, signId }) => {
     let [submitButtonLabel, setSubmitButtonLabel] = useState('Save');
+    let [submitButtonIcon, setSubmitButtonIcon] = useState('/check.svg');
 
     function submit(e) {
-        setSubmitButtonLabel('Saving...');
+        setSubmitButtonLabel('Saving');
+        setSubmitButtonIcon('/loading.svg');
         const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/${signId}?minArrivalTime=${signOptions.minimum_time}&warnTime=${signOptions.warn_time}&signDirection=${signOptions.direction || ''}&signRotation=${signOptions.rotating}&numArrivals=${signOptions.max_arrivals_to_show}&cycleTime=${signOptions.rotation_time}&autoOff=${signOptions.shutoff_schedule}&autoOffStart=${formatTime(signOptions.turnoff_time)}&autoOffEnd=${formatTime(signOptions.turnon_time)}`;
         console.log(url);
         fetch(url, {method: 'POST'})
         .then(res => res.json())
-        .then((payload) => {
-            console.log(payload);
-            setSubmitButtonLabel('Save');
+        .then(() => {
+            setTimeout(() => {
+                setSubmitButtonLabel('Saved!');
+                setSubmitButtonIcon('/check.svg');
+                setTimeout(() => {
+                    setSubmitButtonLabel('Save');
+                }, 2500);
+            }, 1000);
         })
     }
 
@@ -133,7 +140,11 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
 
                 </CheckboxExpander>
             </form>
-            <Button icon="/check.svg" clickHandler={submit} label={ submitButtonLabel } />
+            <Button
+                icon={submitButtonIcon}
+                clickHandler={submit}
+                label={ submitButtonLabel }
+                className={(submitButtonLabel === 'Saving') ? styles['button--loading'] : ((submitButtonLabel === 'Saved!') ? styles['button--saved'] : null)} />
         </div>
     )
 }

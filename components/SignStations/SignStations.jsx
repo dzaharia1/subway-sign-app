@@ -6,22 +6,15 @@ import { render } from 'react-dom';
 
 const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) => {
     const [searchResults, setSearchResults] = useState([]);
-    const [searchSubmitIcon, setSearchSubmitIcon] = useState('/search.svg');
+    const [submitButtonIcon, setSubmitButtonIcon] = useState('');
 
     useEffect(() => {
     }, [])
 
     function searchFocus(e) {
         let searchBox = e.target;
-        let button = searchBox.parentNode.querySelector('button');
         searchBox.placeholder = 'Search for a station';
         setEditMode(true);
-        if (searchBox.value === '') {
-            setSearchSubmitIcon('/close.svg');
-        } else {
-            setSearchSubmitIcon('/check.svg');
-            button.classList.add(styles["button--active"]);
-        }
     }
     
     function searchInput(e) {
@@ -39,18 +32,28 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
 
     function submit(e) {
         let searchBox = e.target.parentNode.querySelector('input');
+        
         if (editMode) {
-            let url = `https://subway-arrivals-staging.herokuapp.com/setstops/${signId}?stops=`
+            let url = `https://subway-arrivals-staging.herokuapp.com/setstops/${signId}?stops=`;
             let stationsToSet = stations.filter(station => station.tracked);
+
+            searchBox.value = '';
+            setSubmitButtonIcon('/loading.svg');
+
             for (let station of stationsToSet) {
                 url += `${station.stopId},`
             }
             url = url.substr(0, url.length - 1);
-            console.log(url)
+
             fetch(url, { method: 'POST' })
-            .then(() => { setEditMode(false) });
+            .then(() => {
+                setTimeout(() => {
+                    setSubmitButtonIcon('');
+                    setEditMode(false);
+                }, 500);
+            });
         } else {
-            setEditMode(!editMode);
+            searchBox.focus();
         }
     }
 
@@ -89,9 +92,9 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
                 type="text"
                 placeholder="Edit stations"/>
             <IconButton
-                className={editMode ? styles['button--active'] : null}
+                className={(submitButtonIcon ? styles['button--loading'] : null) || (editMode ? styles['button--active'] : null)}
                 clickHandler={submit}
-                icon={editMode ? '/check.svg' : '/search.svg'} />
+                icon={submitButtonIcon || (editMode ? '/check.svg' : '/search.svg')} />
         </div>
     </div>)
 }
