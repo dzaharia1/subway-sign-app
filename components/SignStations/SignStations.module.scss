@@ -70,6 +70,17 @@
     }
 
     .button--active {
+        background-color: $green-456;
+    }
+
+    .button--loading {
         background-color: $blue-ace;
+        animation: spin $animation infinite;
+        
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     }
 }
