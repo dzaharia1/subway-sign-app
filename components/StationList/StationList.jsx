@@ -32,9 +32,11 @@ const StationButton = ({stopId, name, lines, clickHandler, editMode, tracked}) =
             {lines.map((line, i) => (
                 <li
                     key={i} 
-                    className={`${styles.line} line--${line[0]} ${(line[1] === 'X') ? styles.express : null}`}>
+                    className={`${styles.line}
+                        line--${(line.length == 2 && line[1] == 'S') ? 'S' : line[0]}
+                        ${(line[1] === 'X') ? styles.express : null}`}>
                     <p>
-                        {(line[1] === 'X') ? line[0] : line}
+                        {(line.length == 2) ? ((line[1] == 'X') ? line[0] : line[1]) : (line[0])}
                     </p>
                 </li>
             ))}
