@@ -15,7 +15,7 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
   let [localOptions, setLocalOptions] = useState(signOptions);
 
   useEffect(() => {
-      fetch(`https://subway-arrivals-staging.herokuapp.com/sign/${signId}`)
+      fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
       .then(res => res.json())
       .then((data) => {
           console.log('updating');
@@ -61,11 +61,11 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
 
 export async function getServerSideProps({params}) {
     const signId = params.sign;
-    const sampleArrivals = await fetch(`https://subway-arrivals-staging.herokuapp.com/sign/${signId}`)
+    const sampleArrivals = await fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
     .then((res) => res.json())
     .then((data) => [data[1], data[2]]);
-    const signOptions = await fetch(`https://subway-arrivals-staging.herokuapp.com/signinfo/${signId}`).then(data => data.json());
-    const allStations = await fetch(`https://subway-arrivals-staging.herokuapp.com/stations`)
+    const signOptions = await fetch(`https://subway-arrivals.herokuapp.com/signinfo/${signId}`).then(data => data.json());
+    const allStations = await fetch(`https://subway-arrivals.herokuapp.com/stations`)
     .then((res) => res.json())
     .then((data) => data.map(station => {
       station.tracked = signOptions.stations.indexOf(station.stopId) > -1;
@@ -76,7 +76,7 @@ export async function getServerSideProps({params}) {
 }
 
 export async function getServerSidePaths() {
-  const signIds = await fetch('https://subway-arrivals-staging.herokuapp.com/signids').then(data => data.json());
+  const signIds = await fetch('https://subway-arrivals.herokuapp.com/signids').then(data => data.json());
   const paths = signIds.map((item) => {
     return {
       params: {

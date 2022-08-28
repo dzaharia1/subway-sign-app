@@ -6,7 +6,7 @@ const PowerButton = ({ signId }) => {
     const [onState, setOnState] = useState(true);
 
     function handleClick (e) {
-        const url = `https://subway-arrivals-staging.herokuapp.com/signpower/${signId}?power=${ !onState }`;
+        const url = `https://subway-arrivals.herokuapp.com/signpower/${signId}?power=${ !onState }`;
         fetch(url, {
             method: 'POST',
             mode: 'no-cors'

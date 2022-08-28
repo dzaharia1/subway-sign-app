@@ -11,7 +11,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
     function submit(e) {
         setSubmitButtonLabel('Saving');
         setSubmitButtonIcon('/loading.svg');
-        const url = `https://subway-arrivals-staging.herokuapp.com/signinfo/${signId}?minArrivalTime=${signOptions.minimum_time}&warnTime=${signOptions.warn_time}&signDirection=${signOptions.direction || ''}&signRotation=${signOptions.rotating}&numArrivals=${signOptions.max_arrivals_to_show}&cycleTime=${signOptions.rotation_time}&autoOff=${signOptions.shutoff_schedule}&autoOffStart=${formatTime(signOptions.turnoff_time)}&autoOffEnd=${formatTime(signOptions.turnon_time)}`;
+        const url = `https://subway-arrivals.herokuapp.com/signinfo/${signId}?minArrivalTime=${signOptions.minimum_time}&warnTime=${signOptions.warn_time}&signDirection=${signOptions.direction || ''}&signRotation=${signOptions.rotating}&numArrivals=${signOptions.max_arrivals_to_show}&cycleTime=${signOptions.rotation_time}&autoOff=${signOptions.shutoff_schedule}&autoOffStart=${formatTime(signOptions.turnoff_time)}&autoOffEnd=${formatTime(signOptions.turnon_time)}`;
         console.log(url);
         fetch(url, {method: 'POST'})
         .then(res => res.json())

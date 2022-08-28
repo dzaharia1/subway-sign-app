@@ -34,7 +34,7 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
         let searchBox = e.target.parentNode.querySelector('input');
         
         if (editMode) {
-            let url = `https://subway-arrivals-staging.herokuapp.com/setstops/${signId}?stops=`;
+            let url = `https://subway-arrivals.herokuapp.com/setstops/${signId}?stops=`;
             let stationsToSet = stations.filter(station => station.tracked);
 
             searchBox.value = '';
