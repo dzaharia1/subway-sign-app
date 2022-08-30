@@ -76,7 +76,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                 <CheckboxExpander
                     id="direction"
                     label= "Choose a direction to show"
-                    description="The sign will only show trains going in the chosen direction."
+                    description="Only show arrivals for trains going in the chosen direction"
                     checked={signOptions.direction !== ""}
                     inputHandler={checkboxHandler}>
                     <fieldset id="direction" onChange={inputHandler} >
@@ -93,7 +93,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                 <CheckboxExpander
                     id="rotating"
                     label="Rotate the second row"
-                    description="Rotate the arrival shown on the second row of the display, while always showing the next arrival on the first line"
+                    description="The first row of the sign will always show the next upcoming train, while the second line will cycle through as many arrivals as you specify."
                     checked={signOptions.rotating}
                     inputHandler={checkboxHandler}>
 
@@ -103,7 +103,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                         label="Show up to..."
                         type="number"
                         value={signOptions.max_arrivals_to_show}
-                        unit="Arrivals"
+                        unit="arrivals"
                         inputHandler={inputHandler}/>
                     <TextInput 
                         className={styles.input}
