@@ -124,7 +124,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                     <TextInput 
                         className={styles.input}
                         id="turnon_time"
-                        label="Turn off at..."
+                        label="Turn on at..."
                         type="time"
                         value={signOptions.turnon_time}
                         unit=""
@@ -132,7 +132,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                     <TextInput 
                         className={styles.input}
                         id="turnoff_time"
-                        label="Turn on at..."
+                        label="Turn off at..."
                         type="time"
                         value={signOptions.turnoff_time}
                         unit=""
