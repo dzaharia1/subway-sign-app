@@ -118,23 +118,23 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                 <CheckboxExpander
                     id="shutoff_schedule"
                     label="Turn the display off automatically"
-                    description="Turn the display off between the specified times..."
+                    description="The display will power itself off during the specified times"
                     checked={signOptions.shutoff_schedule}
                     inputHandler={checkboxHandler}>
-                    <TextInput 
-                        className={styles.input}
-                        id="turnon_time"
-                        label="Turn on at..."
-                        type="time"
-                        value={signOptions.turnon_time}
-                        unit=""
-                        inputHandler={inputHandler}/>
                     <TextInput 
                         className={styles.input}
                         id="turnoff_time"
                         label="Turn off at..."
                         type="time"
                         value={signOptions.turnoff_time}
+                        unit=""
+                        inputHandler={inputHandler}/>
+                    <TextInput 
+                        className={styles.input}
+                        id="turnon_time"
+                        label="Turn on at..."
+                        type="time"
+                        value={signOptions.turnon_time}
                         unit=""
                         inputHandler={inputHandler}/>
 
