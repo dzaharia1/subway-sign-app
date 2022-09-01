@@ -5,6 +5,15 @@ import React, {useState, useEffect} from 'react'
 const PowerButton = ({ signId }) => {
     const [onState, setOnState] = useState(true);
 
+    useEffect(() => {
+        const url = `https://subway-arrivals.herokuapp.com/signpower/${signId}`;
+        fetch(url)
+        .then(response => response.json())
+        .then((data) => {
+            setOnState(data);
+        });
+    }, []);
+
     function handleClick (e) {
         const url = `https://subway-arrivals.herokuapp.com/signpower/${signId}?power=${ !onState }`;
         fetch(url, {
