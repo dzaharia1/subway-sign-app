@@ -58,15 +58,17 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
     }
 
     function stationToggle(stopId) {
-        console.log('teehee');
-        const newStations = stations.map(station => {
-            if (station.stopId === stopId) {
-                station.tracked = !station.tracked;
-            }
-            return station;
-        })
-
-        setStations(newStations);
+        if (editMode) {
+            console.log('teehee');
+            const newStations = stations.map(station => {
+                if (station.stopId === stopId) {
+                    station.tracked = !station.tracked;
+                }
+                return station;
+            })
+    
+            setStations(newStations);
+        }
     }
 
     return(
