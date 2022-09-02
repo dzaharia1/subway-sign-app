@@ -57,6 +57,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
     return (
         <div className={styles['options__container']}>
             <form className={styles.options}>
+                <h2>Sign options</h2>
                 <TextInput
                     className={styles.input}
                     id="minimum_time"

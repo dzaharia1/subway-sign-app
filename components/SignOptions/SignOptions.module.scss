@@ -26,6 +26,15 @@
         @extend %vertical-start;
         overflow-y: hidden;
 
+        h2 {
+            margin-bottom: 1rem;
+            display: none;
+
+            @media screen and (min-width: $breakpoint) {
+                display: block;
+            }
+        }
+
         button {
             margin: 1rem 0;
             width: 100%;
