@@ -1,7 +1,7 @@
 @import '../../styles/scaffolding/utilities-manifest';
 
 .sign-mockup {
-    @extend %vertical-start;
+    @extend %vertical-center;
     width: 100%;
     padding: .75rem $padding-mobile;
     background-color: $background-blue;
@@ -11,6 +11,10 @@
     transition: max-height $transition,
                 margin $transition,
                 padding $transition;
+
+    @media screen and (min-width: $breakpoint) {
+        padding: .75rem $padding-primary;
+    }
     
     &--edit-mode {
         max-height: 0;
@@ -22,9 +26,14 @@
         @extend %horizontal-center;
         width: 100%;
         color: $primary-white;
+        max-width: $site-max-width;
 
         &:first-child {
             margin-bottom: .75rem;
+        }
+
+        @media screen and (min-width: $site-max-width) {
+            padding: 0 $padding-primary;
         }
 
         .index {

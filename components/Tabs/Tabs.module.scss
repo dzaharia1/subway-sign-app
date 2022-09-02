@@ -3,6 +3,7 @@
 .tab {
     @extend %vertical-start;
     width: 100vw;
+    max-width: $site-max-width;
     overflow: hidden;
     flex: 1;
 }
@@ -13,6 +14,18 @@
     height: 100%;
     padding: 0 calc($padding-mobile / 2);
     overflow: hidden;
+
+    @media screen and (min-width: $breakpoint) {
+        padding: 0;
+
+        &:first-child {
+            padding-right: $padding-primary;
+            border-right: 1px $tertiary-blue solid;
+            margin-right: $padding-primary;
+
+        }
+    }
+
     
     &__frame {
         @extend %horizontal-start;
@@ -20,6 +33,11 @@
         height: 100%;
         transition: transform $transition;
         overflow: hidden;
+
+        @media screen and (min-width: $breakpoint) {
+            width: 100%;
+            padding: 0 $padding-primary;
+        }
     }
 }
 
@@ -54,6 +72,10 @@
         width: 100%;
         max-height: 80px;
         transition: max-height $transition;
+
+        @media screen and (min-width: $breakpoint) {
+            max-height: 0;
+        }
 
         &--edit-mode {
             max-height: 0px;

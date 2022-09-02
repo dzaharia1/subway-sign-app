@@ -13,19 +13,42 @@
 
         .search-results {
             display: block;
+            opacity: 1;
         }
+    }
+}
+
+@media screen and (min-width: $breakpoint) {
+    .tracked-stations,
+    .search-results {
+        padding-right: .6rem;
     }
 }
 
 .tracked-stations {
     flex: 1;
+    transition: flex $transition;
 }
 
 .search-results {
     width: 100%;
     flex: 1;
     overflow-y: scroll;
-    display: none;
+    opacity: 0;
+    transition: opacity $transition;
+
+    &::-webkit-scrollbar {
+        width: .75rem;
+        background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: lighten($tertiary-blue, 25);
+        border-radius: 7.5px;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
     &--active {
         display: flex;

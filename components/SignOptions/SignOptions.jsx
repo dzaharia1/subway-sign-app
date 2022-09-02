@@ -57,6 +57,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
     return (
         <div className={styles['options__container']}>
             <form className={styles.options}>
+                <h2>Sign options</h2>
                 <TextInput
                     className={styles.input}
                     id="minimum_time"
@@ -144,7 +145,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                 icon={submitButtonIcon}
                 clickHandler={submit}
                 label={ submitButtonLabel }
-                className={(submitButtonLabel === 'Saving') ? styles['button--loading'] : ((submitButtonLabel === 'Saved!') ? styles['button--saved'] : null)} />
+                className={`${styles.button} ${(submitButtonLabel === 'Saving') ? styles['button--loading'] : ((submitButtonLabel === 'Saved!') ? styles['button--saved'] : null)}`} />
         </div>
     )
 }
