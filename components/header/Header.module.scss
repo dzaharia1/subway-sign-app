@@ -4,10 +4,15 @@
     @extend %horizontal-center;
     justify-content: space-between;
     width: 100%;
+    max-width: $site-max-width;
     padding: 1rem $padding-mobile;
     font-size: 1.5rem;
     transition: margin $transition,
                 opacity $transition;
+    
+    @media screen and (min-width: $breakpoint) {
+        padding: 1rem $padding-primary;
+    }
 
     &--edit-mode {
         margin-top: -50px;

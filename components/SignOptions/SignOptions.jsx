@@ -144,7 +144,7 @@ const Options = ({ signOptions, setSignOptions, signId }) => {
                 icon={submitButtonIcon}
                 clickHandler={submit}
                 label={ submitButtonLabel }
-                className={(submitButtonLabel === 'Saving') ? styles['button--loading'] : ((submitButtonLabel === 'Saved!') ? styles['button--saved'] : null)} />
+                className={`${styles.button} ${(submitButtonLabel === 'Saving') ? styles['button--loading'] : ((submitButtonLabel === 'Saved!') ? styles['button--saved'] : null)}`} />
         </div>
     )
 }

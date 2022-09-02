@@ -23,7 +23,7 @@
     margin: 0 0 .4rem 0;
     background-repeat: no-repeat;
     background-size: 1.25rem;
-    background-position: 95% center;
+    background-position: calc(100% - 1rem) center;
 
     h3 {
         text-align: left;

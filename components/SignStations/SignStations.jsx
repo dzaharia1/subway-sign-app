@@ -5,11 +5,8 @@ import IconButton from '../IconButton'
 import { render } from 'react-dom';
 
 const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) => {
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState(stations);
     const [submitButtonIcon, setSubmitButtonIcon] = useState('');
-
-    useEffect(() => {
-    }, [])
 
     function searchFocus(e) {
         let searchBox = e.target;
@@ -37,19 +34,23 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
             let url = `https://subway-arrivals.herokuapp.com/setstops/${signId}?stops=`;
             let stationsToSet = stations.filter(station => station.tracked);
 
-            searchBox.value = '';
             setSubmitButtonIcon('/loading.svg');
-
+            
             for (let station of stationsToSet) {
                 url += `${station.stopId},`
             }
             url = url.substr(0, url.length - 1);
-
+            
             fetch(url, { method: 'POST' })
             .then(() => {
                 setTimeout(() => {
                     setSubmitButtonIcon('');
                     setEditMode(false);
+                    searchBox.value = '';
+                    searchBox.placeholder = 'Edit stations';
+                    setTimeout(() => {
+                        setSearchResults(stations);
+                    }, 750);
                 }, 500);
             });
         } else {

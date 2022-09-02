@@ -3,20 +3,14 @@
 .main {
 	@extend %vertical-center;
 	@extend %helvetica;
-	position: fixed;
-	height: 100%;
-	left: 0;
-	right: 0;
+	width: 100vw;
+	height: 100vh;
 	overflow-x: hidden;
 	font-size: 16px;
 
 	background-color: $background-blue;
 	color: $primary-white;
 	background-image: linear-gradient($secondary-blue, $background-blue);
-
-	@media screen and (min-width: $breakpoint) {
-		max-width: $site-max-width;
-	}
 }
 
 .sign-selector {
@@ -50,5 +44,26 @@
         width: 100%;
         background-color: transparentize($background-blue, .75);
 		justify-self: flex-end;
+	}
+
+	@media screen and (min-width: $breakpoint) {
+		justify-content: center;
+		padding-bottom: 30vh;
+
+		h1,
+		h2,
+		h3,
+		.button,
+		div {
+			max-width: $site-max-width * .6;
+		}
+
+		div {
+			flex: 0;
+		}
+
+		.button {
+			width: 400px;
+		}
 	}
 }

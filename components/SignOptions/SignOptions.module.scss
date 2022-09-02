@@ -5,6 +5,23 @@
     overflow-y: scroll;
     min-height: min-content;
 
+    @media screen and (min-width: $breakpoint) {
+        padding-right: .6rem;
+    }
+
+    &::-webkit-scrollbar {
+        width: .75rem;
+        background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: lighten($tertiary-blue, 25);
+        border-radius: 7.5px;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
     &__container {
         @extend %vertical-start;
         overflow-y: hidden;
@@ -12,6 +29,10 @@
         button {
             margin: 1rem 0;
             width: 100%;
+
+            @media screen and (min-width: $breakpoint) {
+                padding: .9rem;
+            }
         }
     }
 
