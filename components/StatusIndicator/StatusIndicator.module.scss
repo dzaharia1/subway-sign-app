@@ -1,0 +1,54 @@
+@import '../../styles/scaffolding/utilities-manifest';
+
+.status-indicator {
+    $indicator-width: 36px;
+    width: $indicator-width;
+    height: $indicator-width;
+    border-radius: 50%;
+    position: absolute;
+    bottom: calc(0px - $indicator-width);
+    right: calc((100vw / 2) - ($indicator-width / 2));
+
+    background-size: 90%;
+    background-position: center;
+    transition: background-color $transition,
+                bottom $transition,
+                top $transition;
+
+    @media screen and (min-width: $breakpoint) {
+        bottom: unset;
+        top: calc(0px - $indicator-width);
+
+        &--loading,
+        &--success,
+        &--error {
+            bottom: none;
+            top: 1rem;
+        }
+    }
+
+    &--loading {
+        background-color: $blue-ace;
+        background-image: url('/loading.svg');
+        bottom: 1rem;
+        animation: spin $animation infinite;
+        
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    &--success {
+        background-color: $green-456;
+        background-image: url('/check.svg');
+        bottom: 1rem;
+    }
+
+    &--error {
+        background-color: $red-123;
+        background-image: url('/close.svg');
+        bottom: 1rem;
+    }
+}
