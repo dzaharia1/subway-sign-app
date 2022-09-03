@@ -49,21 +49,3 @@
         width: 100%;
     }
 }
-
-.button--loading {
-    background-color: $blue-ace;
-
-    img {
-        animation: spin $animation infinite;
-        
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    }
-}
-
-.button--saved {
-    background-color: $green-g;
-}

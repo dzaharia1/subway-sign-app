@@ -7,32 +7,43 @@ import SignMockup from '../../components/sign-mockup'
 import Tab from '../../components/Tabs'
 import SignStations from '../../components/SignStations'
 import SignOptions from '../../components/SignOptions'
+import StatusIndicator from '../../components/StatusIndicator'
 
 export default function Home({ allStations, signOptions, sampleArrivals, signId }) {
   const [editStationsMode, setEditStationsMode] = useState(false);
   const [stations, setStations] = useState(allStations);
   const [arrivals, setArrivals] = useState(sampleArrivals);
   const [localOptions, setLocalOptions] = useState(signOptions);
+  const [statusIcon, setStatusIcon] = useState('');
 
   useEffect(() => {
     console.log('updating sign');
+    setStatusIcon('loading');
     const setOptionsUrl = `https://subway-arrivals.herokuapp.com/signinfo/${signId}?minArrivalTime=${localOptions.minimum_time}&warnTime=${localOptions.warn_time}&signDirection=${localOptions.direction || ''}&signRotation=${localOptions.rotating}&numArrivals=${localOptions.max_arrivals_to_show}&cycleTime=${localOptions.rotation_time}&autoOff=${localOptions.shutoff_schedule}&autoOffStart=${formatTime(localOptions.turnoff_time)}&autoOffEnd=${formatTime(localOptions.turnon_time)}`;
     fetch(setOptionsUrl, { method: 'POST' })
     .then(res => res.json())
     .then(() => {
         fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
         .then(res => res.json())
-        .then(data => setArrivals([data[1], data[2]]));
+        .then(data => setArrivals([data[1], data[2]]))
+        .then(() => {
+          setTimeout(() => {
+            setStatusIcon('success');
+            setTimeout(() => {
+              setStatusIcon('')
+            }, 1500);
+          }, 1000);
+        });
     })
   }, [localOptions, stations]);
 
 
-    function formatTime(time) {
-        if (time.length != 8) {
-            return time + ":00";
-        }
-        return time;
-    }
+  function formatTime(time) {
+      if (time.length != 8) {
+          return time + ":00";
+      }
+      return time;
+  }
 
   return (
     <main className={ styles.main }>
@@ -66,7 +77,7 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
           setLocalOptions={ setLocalOptions }
           signId={ signId } />
       </Tab>
-
+      <StatusIndicator state={statusIcon} />
     </main>
   )
 }
