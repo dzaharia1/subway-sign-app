@@ -9,20 +9,30 @@ import SignStations from '../../components/SignStations'
 import SignOptions from '../../components/SignOptions'
 
 export default function Home({ allStations, signOptions, sampleArrivals, signId }) {
-  let [editStationsMode, setEditStationsMode] = useState(false);
-  let [stations, setStations] = useState(allStations);
-  let [arrivals, setArrivals] = useState(sampleArrivals);
-  let [localOptions, setLocalOptions] = useState(signOptions);
+  const [editStationsMode, setEditStationsMode] = useState(false);
+  const [stations, setStations] = useState(allStations);
+  const [arrivals, setArrivals] = useState(sampleArrivals);
+  const [localOptions, setLocalOptions] = useState(signOptions);
 
   useEffect(() => {
-      fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
-      .then(res => res.json())
-      .then((data) => {
-          console.log('updating');
-          setArrivals([data[1], data[2]]);
-      });
-      console.log(arrivals);
-  }, [localOptions]);
+    console.log('updating sign');
+    const setOptionsUrl = `https://subway-arrivals.herokuapp.com/signinfo/${signId}?minArrivalTime=${localOptions.minimum_time}&warnTime=${localOptions.warn_time}&signDirection=${localOptions.direction || ''}&signRotation=${localOptions.rotating}&numArrivals=${localOptions.max_arrivals_to_show}&cycleTime=${localOptions.rotation_time}&autoOff=${localOptions.shutoff_schedule}&autoOffStart=${formatTime(localOptions.turnoff_time)}&autoOffEnd=${formatTime(localOptions.turnon_time)}`;
+    fetch(setOptionsUrl, { method: 'POST' })
+    .then(res => res.json())
+    .then(() => {
+        fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
+        .then(res => res.json())
+        .then(data => setArrivals([data[1], data[2]]));
+    })
+  }, [localOptions, stations]);
+
+
+    function formatTime(time) {
+        if (time.length != 8) {
+            return time + ":00";
+        }
+        return time;
+    }
 
   return (
     <main className={ styles.main }>
@@ -39,7 +49,7 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
         editMode={ editStationsMode }/>
       <SignMockup
         arrivals={ arrivals }
-        signOptions={ localOptions }
+        localOptions={ localOptions }
         editMode={ editStationsMode }
         signId={ signId } />
       <Tab editMode={ editStationsMode }>
@@ -50,9 +60,9 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
           setEditMode={ setEditStationsMode }
           signId={ signId }/>
         <SignOptions
-          signOptions={ localOptions }
-          setSignOptions={ setLocalOptions }
-          signId={ signId }/>
+          localOptions={ localOptions }
+          setLocalOptions={ setLocalOptions }
+          signId={ signId } />
       </Tab>
 
     </main>

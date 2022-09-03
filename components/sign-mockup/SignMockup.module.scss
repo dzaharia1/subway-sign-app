@@ -21,6 +21,10 @@
         margin: 0;
         padding: 0;
     }
+
+    &--loading {
+        background-color: salmon;
+    }
     
     .arrival {
         @extend %horizontal-center;
