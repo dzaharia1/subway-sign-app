@@ -1,6 +1,6 @@
 import styles from './StationList.module.scss'
 
-const StationList = ({ stations, className, clickHandler, editMode }) => {
+const StationList = ({ stations, localOptions, className, clickHandler, editMode }) => {
 
     return <ul className={ `${styles['station-list']} ${className}` }>
         { stations.map((station, i) => (
@@ -11,7 +11,7 @@ const StationList = ({ stations, className, clickHandler, editMode }) => {
                     lines={station.lines}
                     clickHandler={clickHandler}
                     editMode={editMode}
-                    tracked={station.tracked} />
+                    tracked={localOptions.stations.includes(station.stopId)} />
             </li>
         ))}
     </ul>

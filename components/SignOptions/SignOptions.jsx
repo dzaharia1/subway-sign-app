@@ -5,26 +5,6 @@ import Button from '../Button';
 import { useEffect, useState } from 'react';
 
 const Options = ({ localOptions, setLocalOptions, signId }) => {
-    let [submitButtonLabel, setSubmitButtonLabel] = useState('Save');
-    let [submitButtonIcon, setSubmitButtonIcon] = useState('/check.svg');
-
-    // function submit(e) {
-    //     setSubmitButtonLabel('Saving');
-    //     setSubmitButtonIcon('/loading.svg');
-    //     const url = `https://subway-arrivals.herokuapp.com/signinfo/${signId}?minArrivalTime=${localOptions.minimum_time}&warnTime=${localOptions.warn_time}&signDirection=${localOptions.direction || ''}&signRotation=${localOptions.rotating}&numArrivals=${localOptions.max_arrivals_to_show}&cycleTime=${localOptions.rotation_time}&autoOff=${localOptions.shutoff_schedule}&autoOffStart=${formatTime(localOptions.turnoff_time)}&autoOffEnd=${formatTime(localOptions.turnon_time)}`;
-    //     console.log(url);
-    //     fetch(url, {method: 'POST'})
-    //     .then(res => res.json())
-    //     .then(() => {
-    //         setTimeout(() => {
-    //             setSubmitButtonLabel('Saved!');
-    //             setSubmitButtonIcon('/check.svg');
-    //             setTimeout(() => {
-    //                 setSubmitButtonLabel('Save');
-    //             }, 2500);
-    //         }, 1000);
-    //     })
-    // }
 
     function inputHandler(e) {
         const value = e.target.value;
@@ -43,6 +23,8 @@ const Options = ({ localOptions, setLocalOptions, signId }) => {
 
         if (property === 'direction' && value === false) {
             value = '';
+        } else if (property === 'direction' && value == true) {
+            value = 'N';
         }
         setLocalOptions(prevOptions => {
             return { ...prevOptions, [property]: value};

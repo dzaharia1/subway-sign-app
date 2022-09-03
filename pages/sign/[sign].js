@@ -55,7 +55,9 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
       <Tab editMode={ editStationsMode }>
         <SignStations 
           stations={ stations }
-          setStations={ setStations }
+          // setStations={ setStations }
+          localOptions={ localOptions }
+          setLocalOptions={ setLocalOptions }
           editMode={ editStationsMode }
           setEditMode={ setEditStationsMode }
           signId={ signId }/>
@@ -76,11 +78,7 @@ export async function getServerSideProps({params}) {
     .then((data) => [data[1], data[2]]);
     const signOptions = await fetch(`https://subway-arrivals.herokuapp.com/signinfo/${signId}`).then(data => data.json());
     const allStations = await fetch(`https://subway-arrivals.herokuapp.com/stations`)
-    .then((res) => res.json())
-    .then((data) => data.map(station => {
-      station.tracked = signOptions.stations.indexOf(station.stopId) > -1;
-      return station;
-    }));
+    .then((res) => res.json());
 
     return { props: { allStations, signOptions, sampleArrivals, signId }}
 }
