@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import IconButton from '../IconButton'
 import { render } from 'react-dom';
 
-const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) => {
+const SignStations = ({ stations, localOptions, setLocalOptions, editMode, setEditMode, signId }) => {
     const [searchResults, setSearchResults] = useState(stations);
     const [submitButtonIcon, setSubmitButtonIcon] = useState('');
 
@@ -27,32 +27,17 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
         }));
     }
 
-    function submit(e) {
+    function toggleEditMode(e) {
         let searchBox = e.target.parentNode.querySelector('input');
         
         if (editMode) {
-            let url = `https://subway-arrivals.herokuapp.com/setstops/${signId}?stops=`;
-            let stationsToSet = stations.filter(station => station.tracked);
-
-            setSubmitButtonIcon('/loading.svg');
-            
-            for (let station of stationsToSet) {
-                url += `${station.stopId},`
-            }
-            url = url.substr(0, url.length - 1);
-            
-            fetch(url, { method: 'POST' })
-            .then(() => {
-                setTimeout(() => {
-                    setSubmitButtonIcon('');
-                    setEditMode(false);
-                    searchBox.value = '';
-                    searchBox.placeholder = 'Edit stations';
-                    setTimeout(() => {
-                        setSearchResults(stations);
-                    }, 750);
-                }, 500);
-            });
+            setSubmitButtonIcon('');
+            setEditMode(false);
+            searchBox.value = '';
+            searchBox.placeholder = 'Edit stations';
+            setTimeout(() => {
+                setSearchResults(stations);
+            }, 750);
         } else {
             searchBox.focus();
         }
@@ -60,15 +45,29 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
 
     function stationToggle(stopId) {
         if (editMode) {
-            console.log('teehee');
-            const newStations = stations.map(station => {
-                if (station.stopId === stopId) {
-                    station.tracked = !station.tracked;
-                }
-                return station;
-            })
-    
-            setStations(newStations);
+            const stationList = localOptions.stations;
+            const targetStationIndex = stationList.indexOf(stopId);
+            
+            if (targetStationIndex >= 0) {
+                stationList.splice(targetStationIndex, 1);
+            } else {
+                stationList.push(stopId);
+            }
+
+            let setStationsUrl = `https://subway-arrivals.herokuapp.com/setstops/${signId}?stops=`;
+            for (let stop of localOptions.stations) {
+                setStationsUrl += `${stop},`;
+            }
+            setStationsUrl = setStationsUrl.substr(0, setStationsUrl.length - 1);
+
+            fetch(setStationsUrl, {method: 'POST'})
+            .then(() => {
+                setLocalOptions(prevOptions => {
+                    return {...prevOptions, stations: stationList}
+                });
+            });
+            
+            console.log(localOptions);
         }
     }
 
@@ -76,7 +75,8 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
     <div className={ `${styles['sign-stations']} ${editMode ? styles['sign-stations--active']: ''}` }>
         <h2>Tracked stations</h2>
         <StationList
-            stations={stations.filter(obj => obj.tracked)}
+            localOptions={ localOptions }
+            stations={stations.filter(obj => localOptions.stations.includes(obj.stopId))}
             className={styles['tracked-stations']}
             clickHandler={stationToggle}
             editMode={editMode} />
@@ -84,6 +84,7 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
             <div className={styles["separator"]}></div>
             <h2>Search results</h2>
             <StationList
+                localOptions={ localOptions }
                 stations={ searchResults }
                 clickHandler={ stationToggle }
                 editMode={editMode} />
@@ -96,7 +97,7 @@ const SignStations = ({ stations, setStations, editMode, setEditMode, signId }) 
                 placeholder="Edit stations"/>
             <IconButton
                 className={(submitButtonIcon ? styles['button--loading'] : null) || (editMode ? styles['button--active'] : null)}
-                clickHandler={submit}
+                clickHandler={toggleEditMode}
                 icon={submitButtonIcon || (editMode ? '/check.svg' : '/search.svg')} />
         </div>
     </div>)
