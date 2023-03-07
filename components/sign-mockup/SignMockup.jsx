@@ -3,7 +3,7 @@ import styles from './SignMockup.module.scss';
 
 const SignMockup = ({ arrivals, localOptions, editMode, signId }) => {
     return <ul className={ `${styles['sign-mockup']} ${editMode ? styles['sign-mockup--edit-mode'] : ''}` }>
-        {arrivals.map((arrival, i) => 
+        {arrivals[0] ? arrivals.map((arrival, i) => 
         (<li className={styles.arrival} key={i}>
                 <p className={styles.index} style={{display: localOptions.rotating ? "block" : "none"}}>{ i + 1 }</p>
                 <div className={`${styles.route} line--${(arrival.routeId.length == 2 && arrival.routeId[1] == 'S') ? 'S' : arrival.routeId[0]}
@@ -15,7 +15,7 @@ const SignMockup = ({ arrivals, localOptions, editMode, signId }) => {
                 <h3 className={styles.headsign}>{arrival.headsign}</h3>
                 <p className={ (arrival.minutesUntil <= localOptions.warn_time ) ? styles.warning : "" }>{arrival.minutesUntil} min</p>
             </li>
-        ))}
+        )) : <p className={ styles['no-data'] }>No upcoming arrivals. Check that the chosen stations have both uptown and downtown trains, and that there are no current service disruptions.</p>}
     </ul>
 }
 

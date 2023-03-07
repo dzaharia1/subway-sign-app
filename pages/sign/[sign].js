@@ -86,7 +86,12 @@ export async function getServerSideProps({params}) {
     const signId = params.sign;
     const sampleArrivals = await fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
     .then((res) => res.json())
-    .then((data) => [data[1], data[2]]);
+    .then((data) => {
+      if (data.length > 1) {
+        return [data[1], data[2]];
+      }
+      return [null, null]
+    });
     const signOptions = await fetch(`https://subway-arrivals.herokuapp.com/signinfo/${signId}`).then(data => data.json());
     const allStations = await fetch(`https://subway-arrivals.herokuapp.com/stations`)
     .then((res) => res.json());
