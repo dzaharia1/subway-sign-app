@@ -15,7 +15,7 @@ const SignMockup = ({ arrivals, localOptions, editMode, signId }) => {
                 <h3 className={styles.headsign}>{arrival.headsign}</h3>
                 <p className={ (arrival.minutesUntil <= localOptions.warn_time ) ? styles.warning : "" }>{arrival.minutesUntil} min</p>
             </li>
-        )) : <p className={ styles['no-data'] }>No upcoming arrivals. There may be service disruptions for the chosen combinations of lines and stations, or the chosen station may be a terminal stop with only uptown or only downtown trains.</p>}
+        )) : <p className={ styles['no-data'] }>No upcoming arrivals. There may be service disruptions for the chosen combinations of lines and stations, or the chosen station may be a stop with only uptown or downtown trains.</p>}
     </ul>
 }
 
