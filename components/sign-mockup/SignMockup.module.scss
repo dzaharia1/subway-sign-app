@@ -82,8 +82,13 @@
     }
     .no-data {
         width: 100%;
+        max-width: $site-max-width;
         height: 68px;
         text-align: left;
         color: $orange-bdfm;
+
+        @media screen and (min-width: $site-max-width) {
+            padding: 0 $padding-primary;
+        }
     }
 }
