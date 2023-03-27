@@ -1,10 +1,10 @@
 # The Subway Arrivals Sign App
-![](public/screenshot.png)
+![](public/screenshot.png|width=100)
 The subway arrivals sign is a CircuitPython-powered LED sign which displays the upcoming train arrivals at the subway stations of your choosing! This repository contains the code for the web app which you will use to configure and manage your sign.
 
 ## Project overview
 The subway arrivals sign needs three overall components in place to get up and running:
-1. [The subway arrivals sign API](https://github.com/dzaharia1/subway-schedules=100x100) (START WITH THIS TUTORIAL)
+1. [The subway arrivals sign API](https://github.com/dzaharia1/subway-schedules) (START WITH THIS TUTORIAL)
 2. The subway arrivals web app (this repository)
 3. [The subway sign itself](https://github.com/dzaharia1/subway-sign-python), which runs on a wifi-enabled CircuitPython board custom-made to drive the an LED matrix.
 
