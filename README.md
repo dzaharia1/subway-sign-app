@@ -4,7 +4,7 @@ The subway arrivals sign is a CircuitPython-powered LED sign which displays the 
 
 ## Project overview
 The subway arrivals sign needs three overall components in place to get up and running:
-1. [The subway arrivals sign API](https://github.com/dzaharia1/subway-schedules) (START WITH THIS tutorial)
+1. [The subway arrivals sign API](https://github.com/dzaharia1/subway-schedules | width=150) (START WITH THIS tutorial)
 2. The subway arrivals web app (this repository)
 3. [The subway sign itself](https://github.com/dzaharia1/subway-sign-python), which runs on a wifi-enabled CircuitPython board custom-made to drive the an LED matrix.
 
