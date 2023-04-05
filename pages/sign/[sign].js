@@ -9,21 +9,21 @@ import SignStations from '../../components/SignStations'
 import SignOptions from '../../components/SignOptions'
 import StatusIndicator from '../../components/StatusIndicator'
 
-export default function Home({ allStations, signOptions, sampleArrivals, signId }) {
+export default function Home({ allStations, signOptions, sampleArrivals, signId, apiUrl }) {
   const [editStationsMode, setEditStationsMode] = useState(false);
   const [stations, setStations] = useState(allStations);
   const [arrivals, setArrivals] = useState(sampleArrivals);
   const [localOptions, setLocalOptions] = useState(signOptions);
   const [statusIcon, setStatusIcon] = useState('');
-
+  
   useEffect(() => {
     console.log('updating sign');
     setStatusIcon('loading');
-    const setOptionsUrl = `https://subway-arrivals.herokuapp.com/signinfo/${signId}?minArrivalTime=${localOptions.minimum_time}&warnTime=${localOptions.warn_time}&signDirection=${localOptions.direction || ''}&signRotation=${localOptions.rotating}&numArrivals=${localOptions.max_arrivals_to_show}&cycleTime=${localOptions.rotation_time}&autoOff=${localOptions.shutoff_schedule}&autoOffStart=${formatTime(localOptions.turnoff_time)}&autoOffEnd=${formatTime(localOptions.turnon_time)}`;
+    const setOptionsUrl = `${apiUrl}/signinfo/${signId}?minArrivalTime=${localOptions.minimum_time}&warnTime=${localOptions.warn_time}&signDirection=${localOptions.direction || ''}&signRotation=${localOptions.rotating}&numArrivals=${localOptions.max_arrivals_to_show}&cycleTime=${localOptions.rotation_time}&autoOff=${localOptions.shutoff_schedule}&autoOffStart=${formatTime(localOptions.turnoff_time)}&autoOffEnd=${formatTime(localOptions.turnon_time)}`;
     fetch(setOptionsUrl, { method: 'POST' })
     .then(res => res.json())
     .then(() => {
-        fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
+        fetch(`${apiUrl}/sign/${signId}`)
         .then(res => res.json())
         .then(data => setArrivals([data[1], data[2]]))
         .then(() => {
@@ -57,7 +57,8 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
       <Header
         signId={ signId }
         signOnState={ signOptions.sign_on }
-        editMode={ editStationsMode }/>
+        editMode={ editStationsMode }
+        apiUrl={ apiUrl }/>
       <SignMockup
         arrivals={ arrivals }
         localOptions={ localOptions }
@@ -66,12 +67,12 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
       <Tab editMode={ editStationsMode }>
         <SignStations 
           stations={ stations }
-          // setStations={ setStations }
           localOptions={ localOptions }
           setLocalOptions={ setLocalOptions }
           editMode={ editStationsMode }
           setEditMode={ setEditStationsMode }
-          signId={ signId }/>
+          signId={ signId }
+          apiUrl={ apiUrl }/>
         <SignOptions
           localOptions={ localOptions }
           setLocalOptions={ setLocalOptions }
@@ -83,24 +84,26 @@ export default function Home({ allStations, signOptions, sampleArrivals, signId 
 }
 
 export async function getServerSideProps({params}) {
-    const signId = params.sign;
-    const sampleArrivals = await fetch(`https://subway-arrivals.herokuapp.com/sign/${signId}`)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.length > 1) {
-        return [data[1], data[2]];
-      }
-      return [null, null]
-    });
-    const signOptions = await fetch(`https://subway-arrivals.herokuapp.com/signinfo/${signId}`).then(data => data.json());
-    const allStations = await fetch(`https://subway-arrivals.herokuapp.com/stations`)
-    .then((res) => res.json());
+  const signId = params.sign;
+  const apiUrl = process.env.API_URL;
+  const sampleArrivals = await fetch(`${apiUrl}/sign/${signId}`)
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.length > 1) {
+      return [data[1], data[2]];
+    }
+    return [null, null]
+  });
+  const signOptions = await fetch(`${apiUrl}/signinfo/${signId}`).then(data => data.json());
+  const allStations = await fetch(`${apiUrl}/stations`)
+  .then((res) => res.json());
 
-    return { props: { allStations, signOptions, sampleArrivals, signId }}
+  return { props: { allStations, signOptions, sampleArrivals, signId, apiUrl }}
 }
 
 export async function getServerSidePaths() {
-  const signIds = await fetch('https://subway-arrivals.herokuapp.com/signids').then(data => data.json());
+  const apiUrl = process.env.API_URL;
+  const signIds = await fetch(`${apiUrl}/signids`).then(data => data.json());
   const paths = signIds.map((item) => {
     return {
       params: {
