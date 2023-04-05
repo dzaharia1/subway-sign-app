@@ -20,8 +20,8 @@ _The app currently does not support adding and removing signs from the database.
 ## Deploying and running the app
 ### Clone this repository and configure the app
 ```bash
-git clone https://github.com/dzaharia1/subway-sign-app.git
-cd subway-sign-app
+$ git clone https://github.com/dzaharia1/subway-sign-app.git
+$ cd subway-sign-app
 ```
 
 ### Deploy this code to Heroku
@@ -29,14 +29,14 @@ cd subway-sign-app
 Very similarly to the API, we will deploy this code as a new application on Heroku. In your terminal, `cd` to the parent directory of the folder we cloned the subway-schedules api. Then run a git clone on this repository, create a new Heroku app, and deploy to that app. Replace `<APP NAME>` with a unique name for your app:
 
 ```bash
-heroku create -a <APP NAME>
+$ heroku create -a <APP NAME>
 ```
 
 Log into your Heroku dashboard, and open the newly created app. On the settings tab, under Config vars, click `Reveal config vars`. Add a line item with a key of API_URL. For the value, input the URL to your API, starting with https. It should take the form of `https://<YOUR API NAME>.herokuapp.com`. Then click `Add` to save the config var.
 
 Now deploy the app
 ```bash
-git push heroku master
+$ git push heroku master
 ```
 
 ### Check the running app and configure your sign
