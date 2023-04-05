@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import IconButton from '../IconButton'
 import { render } from 'react-dom';
 
-const SignStations = ({ stations, localOptions, setLocalOptions, editMode, setEditMode, signId }) => {
+const SignStations = ({ stations, localOptions, setLocalOptions, editMode, setEditMode, signId, apiUrl }) => {
     const [searchResults, setSearchResults] = useState(stations);
     const [submitButtonIcon, setSubmitButtonIcon] = useState('');
 
@@ -54,7 +54,7 @@ const SignStations = ({ stations, localOptions, setLocalOptions, editMode, setEd
                 stationList.push(stopId);
             }
 
-            let setStationsUrl = `https://subway-arrivals.herokuapp.com/setstops/${signId}?stops=`;
+            let setStationsUrl = `${apiUrl}/setstops/${signId}?stops=`;
             for (let stop of localOptions.stations) {
                 setStationsUrl += `${stop},`;
             }

@@ -2,11 +2,11 @@ import styles from './Power-Button.module.scss'
 import IconButton from '../IconButton'
 import React, {useState, useEffect} from 'react'
 
-const PowerButton = ({ signId }) => {
+const PowerButton = ({ signId, apiUrl }) => {
     const [onState, setOnState] = useState(true);
 
     useEffect(() => {
-        const url = `https://subway-arrivals.herokuapp.com/signpower/${signId}`;
+        const url = `${apiUrl}/signpower/${signId}`;
         fetch(url)
         .then(response => response.json())
         .then((data) => {
@@ -15,7 +15,7 @@ const PowerButton = ({ signId }) => {
     }, []);
 
     function handleClick (e) {
-        const url = `https://subway-arrivals.herokuapp.com/signpower/${signId}?power=${ !onState }`;
+        const url = `${apiUrl}/signpower/${signId}?power=${ !onState }`;
         fetch(url, {
             method: 'POST',
             mode: 'no-cors'

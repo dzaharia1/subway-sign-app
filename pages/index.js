@@ -93,7 +93,8 @@ export default function Home({ signIds }) {
 }
 
 export async function getServerSideProps() {
-  const signIds = await fetch('https://subway-arrivals.herokuapp.com/signids')
+  const apiUrl = process.env.API_URL
+  const signIds = await fetch(`${apiUrl}/signids`)
   .then(res => res.json())
   .then(data => data.map(item => item.sign_id));
 
