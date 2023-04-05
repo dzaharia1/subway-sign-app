@@ -34,6 +34,11 @@ heroku create -a <APP NAME>
 
 Log into your Heroku dashboard, and open the newly created app. On the settings tab, under Config vars, click `Reveal config vars`. Add a line item with a key of API_URL. For the value, input the URL to your API, starting with https. It should take the form of `https://<YOUR API NAME>.herokuapp.com`. Then click `Add` to save the config var.
 
+Now deploy the app
+```bash
+git push heroku master
+```
+
 ### Check the running app and configure your sign
 Visit your running app at https://`<APP NAME>`.herokuapp.com, where `<APP NAME>` is the name that you created your app with. At the prompt, enter the ID for the sign you created when you deployed the API, and then hit "Find my sign."
 
