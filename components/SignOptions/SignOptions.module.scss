@@ -24,7 +24,7 @@
 
     &__container {
         @extend %vertical-start;
-        overflow-y: hidden;
+        overflow-y: scroll;
 
         h2 {
             margin-bottom: 1rem;

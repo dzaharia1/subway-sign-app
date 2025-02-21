@@ -4,7 +4,7 @@
 	@extend %vertical-center;
 	@extend %helvetica;
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh;
 	overflow-x: hidden;
 	font-size: 16px;
 
@@ -14,7 +14,7 @@
 }
 
 .sign-selector {
-	padding: 15vh $padding-mobile 1rem;
+	padding: 15dvh $padding-mobile 1rem;
 	background-image: url('/selector-background.png');
     background-size: cover;
     background-position: bottom center;
@@ -48,7 +48,7 @@
 
 	@media screen and (min-width: $breakpoint) {
 		justify-content: center;
-		padding-bottom: 30vh;
+		padding-bottom: 30dvh;
 
 		h1,
 		h2,
