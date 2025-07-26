@@ -1,0 +1,8 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="17.5" cy="10.5" r="4.5" transform="rotate(90 17.5 10.5)" stroke="white" stroke-width="3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M35.5 10.5C35.5 11.6046 34.6046 12.5 33.5 12.5L22.5 12.5C21.3954 12.5 20.5 11.6046 20.5 10.5C20.5 9.39543 21.3954 8.5 22.5 8.5L33.5 8.5C34.6046 8.5 35.5 9.39543 35.5 10.5Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 10.5C14.5 11.6046 13.6046 12.5 12.5 12.5L2.5 12.5C1.39543 12.5 0.5 11.6046 0.5 10.5C0.5 9.39543 1.39543 8.5 2.5 8.5L12.5 8.5C13.6046 8.5 14.5 9.39543 14.5 10.5Z" fill="white"/>
+<circle cx="17.5" cy="24.5" r="4.5" transform="rotate(90 17.5 24.5)" stroke="white" stroke-width="3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M35.5 24.5C35.5 25.6046 34.6046 26.5 33.5 26.5L22.5 26.5C21.3954 26.5 20.5 25.6046 20.5 24.5C20.5 23.3954 21.3954 22.5 22.5 22.5L33.5 22.5C34.6046 22.5 35.5 23.3954 35.5 24.5Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 24.5C14.5 25.6046 13.6046 26.5 12.5 26.5L2.5 26.5C1.39543 26.5 0.5 25.6046 0.5 24.5C0.5 23.3954 1.39543 22.5 2.5 22.5L12.5 22.5C13.6046 22.5 14.5 23.3954 14.5 24.5Z" fill="white"/>
+</svg>
