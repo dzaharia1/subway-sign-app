@@ -2,7 +2,6 @@ import styles from './SignStations.module.scss';
 import StationList from '../StationList'
 import { useEffect, useState } from 'react';
 import IconButton from '../IconButton'
-import { render } from 'react-dom';
 
 const SignStations = ({ stations, localOptions, setLocalOptions, editMode, setEditMode, signId, apiUrl }) => {
     const [searchResults, setSearchResults] = useState(stations);
