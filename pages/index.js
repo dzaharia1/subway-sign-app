@@ -10,7 +10,9 @@ export default function Home({ signIds }) {
 
   useEffect(() => {
     const lastSignId = localStorage.getItem('lastSignId');
-    if (lastSignId) {
+    const hasAutoRedirected = sessionStorage.getItem('hasAutoRedirected');
+    if (lastSignId && !hasAutoRedirected) {
+      sessionStorage.setItem('hasAutoRedirected', 'true');
       window.location.href = `/sign/${lastSignId}`;
     }
   }, []);
