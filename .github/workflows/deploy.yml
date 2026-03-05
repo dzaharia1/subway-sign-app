@@ -26,3 +26,8 @@ jobs:
         run: |
           git remote add production ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/home/dan/services/subway-sign-frontend
           GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key" git push production main --force
+
+      - name: Build and restart on server
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "cd /home/dan/services/subway-sign-frontend && npm install && npm run build && pm2 restart subway-sign-frontend"
