@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3105",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "git push origin main && sleep 6 && gh run watch $(gh run list --limit 1 --json databaseId --jq '.[0].databaseId')"
   },
   "dependencies": {
     "next": "12.2.5",

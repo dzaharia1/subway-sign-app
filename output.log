@@ -1,0 +1,7 @@
+
+> subway-sign-frontend@0.1.0 start
+> next start -p 3105
+
+ready - started server on 0.0.0.0:3105, url: http://localhost:3105
+info  - Loaded env from /home/dan/services/subway-sign-frontend/.env
+info  - SWC minify release candidate enabled. https://nextjs.link/swcmin
