@@ -18,7 +18,7 @@ const Options = ({ localOptions, setLocalOptions, signId }) => {
     }
     
     function checkboxHandler(e) {
-        const value = e.target.checked;
+        let value = e.target.checked;
         const property = e.target.id;
 
         if (property === 'direction' && value === false) {
