@@ -61,6 +61,7 @@ export default function Home({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
         <meta name="theme-color" content="#232338" />
+        <link rel='manifest' href={`/api/manifest?start_url=/sign/${signId}`} />
       </Head>
       <Header
         signId={signId}
