@@ -8,6 +8,13 @@ export default function Home({ signIds }) {
   let [signCodeInput, setSignCodeInput] = useState('');
   let [inputError, setInputError] = useState({ error: false });
 
+  useEffect(() => {
+    const lastSignId = localStorage.getItem('lastSignId');
+    if (lastSignId) {
+      window.location.href = `/sign/${lastSignId}`;
+    }
+  }, []);
+
   function signFieldInputHandler(e) {
     e.target.value = e.target.value.toLowerCase();
     let fieldValue = e.target.value;

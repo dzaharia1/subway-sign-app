@@ -2,7 +2,7 @@
   "name": "Subway Sign App",
   "short_name": "Subway Sign",
   "description": "Real-time subway arrival information display",
-  "start_url": "/sign/kshf",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

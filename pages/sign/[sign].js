@@ -22,6 +22,10 @@ export default function Home({
   const [statusIcon, setStatusIcon] = useState('');
 
   useEffect(() => {
+    localStorage.setItem('lastSignId', signId);
+  }, [signId]);
+
+  useEffect(() => {
     console.log('updating sign');
     setStatusIcon('loading');
     const setOptionsUrl = `${apiUrl}/signinfo/${signId}?minArrivalTime=${signOptions.minimum_time}&warnTime=${signOptions.warn_time}&signDirection=${signOptions.direction || ''}&signRotation=${signOptions.rotating}&numArrivals=${signOptions.max_arrivals_to_show}&cycleTime=${signOptions.rotation_time}&autoOff=${signOptions.shutoff_schedule}&autoOffStart=${formatTime(signOptions.turnoff_time)}&autoOffEnd=${formatTime(signOptions.turnon_time)}`;
