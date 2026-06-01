@@ -4,7 +4,7 @@
 	@extend %vertical-center;
 	@extend %helvetica;
 	width: 100vw;
-	height: 100dvh;
+	height: var(--app-height, 100dvh);
 	padding-bottom: env(safe-area-inset-bottom, 0px);
 	overflow-x: hidden;
 	font-size: 16px;
