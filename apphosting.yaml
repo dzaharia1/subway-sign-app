@@ -1,0 +1,17 @@
+# apphosting.yaml
+# Learn more at: https://firebase.google.com/docs/app-hosting/configure
+
+# Cloud Run service configuration
+runConfig:
+  cpu: 1
+  memoryMiB: 512
+  minInstances: 0  # Scaled to 0 when idle to stay within the free tier
+  maxInstances: 10 # Caps scaling to prevent unexpected costs
+
+# Environment variables injected at build and runtime
+env:
+  - variable: API_URL
+    value: "https://your-subway-schedules-api.herokuapp.com" # TODO: Replace with your actual production API URL
+    availability:
+      - BUILD
+      - RUNTIME

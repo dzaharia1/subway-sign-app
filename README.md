@@ -24,7 +24,23 @@ $ git clone https://github.com/dzaharia1/subway-sign-app.git
 $ cd subway-sign-app
 ```
 
-### Deploy this code to Heroku
+### Option A: Deploy to Firebase App Hosting (Recommended)
+
+This app can be deployed to Firebase App Hosting for zero-config, fully managed SSR deployment:
+
+1. Create a Firebase project (e.g. `subway-arrivals`) in the [Firebase Console](https://console.firebase.google.com/).
+2. Upgrade your Firebase project to the **Blaze** plan (pay-as-you-go).
+3. Ensure the `apphosting.yaml` and `firebase.json` files are present in the repository root.
+4. Edit the `apphosting.yaml` file to set your `API_URL` environment variable pointing to your deployed API:
+   ```yaml
+   env:
+     - variable: API_URL
+       value: "https://your-api-name.herokuapp.com"
+   ```
+5. In the Firebase Console, navigate to **App Hosting**, click **Get Started**, connect your GitHub account, and select this repository.
+6. Push your code to your main branch. Firebase will build and deploy the app automatically!
+
+### Option B: Deploy this code to Heroku
 
 Very similarly to the API, we will deploy this code as a new application on Heroku. In your terminal, `cd` to the parent directory of the folder we cloned the subway-schedules api. Then run a git clone on this repository, create a new Heroku app, and deploy to that app. Replace `<APP NAME>` with a unique name for your app:
 
